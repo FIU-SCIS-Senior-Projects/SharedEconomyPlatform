@@ -1,0 +1,233 @@
+<div id="rentNow" class="uk-modal modals">
+    <div class="uk-modal-dialog offerModal">
+        <a class="uk-modal-close uk-close" id="modalCloseRentNow"></a>
+        <div class="uk-modal-header modalHeader">Rent Now</div>
+        <div class="uk-text-center uk-vertical-align">
+            <div class="uk-vertical-align-middle">
+                <div>
+                    <form class="uk-form" id="rentNowForm">
+                        <div class="uk-form-row">
+                            <div class="uk-form-controls">
+                                <div class="uk-form-row">
+                                    <div class="uk-alert uk-alert-danger uk-hidden" role="alert" id="rentNowError">
+                                        <ul id="rentNowErrorList"></ul>
+                                    </div>
+                                    <div data-uk-button-radio
+                                         data-uk-switcher="{connect:'#availabilityButtons2', animation:'fade'}"
+                                         class="uk-margin-bottom">
+                                        <button class="uk-button uk-button-primary uk-active" type="checkbox"
+                                                name="perHourButtonRentNow" id="perHourButtonRentNow"
+                                                value="{{this.spaceId}}"
+                                                data-uk-tooltip title="Rent hourly">Per Hour
+                                        </button>
+                                        <button class="uk-button uk-button-primary" type="checkbox"
+                                                name="perDayButtonRentNow"
+                                                value="{{this.spaceOwner}}" id="perDayButtonRentNow" data-uk-tooltip
+                                                title="Rent for full days">Per Day
+                                        </button>
+                                        <button class="uk-button uk-button-primary" type="checkbox" data-uk-tooltip
+                                                id="perMonthButtonRentNow" title="Rent for full months">Per Month
+                                        </button>
+
+                                    </div>
+                                    <i class="uk-icon-spinner uk-icon-spin uk-icon-medium uk-hidden"
+                                       id="spinnerIcon"></i>
+                                    <ul id="availabilityButtons2" class="uk-switcher">
+                                        <li>
+                                            <div class="uk-form-icon uk-margin-small-bottom uk-hidden"
+                                                 id="perHourDivRentNow">
+                                                <i class="uk-icon-calendar formIcon"></i>
+                                                <input style="width: 300px;" type="text" readonly
+                                                       class="uk-form-large uk-text-center uk-margin-small-top hourFieldRentNow datePickerPerHour"
+                                                       id="datePickerPerHourRentNow" name="datePerHourRentNow"
+                                                       placeholder="Select date to view availability">
+                                            </div>
+                                            <table id="checkBoxTableRentNow"
+                                                   class="uk-margin-small-top uk-hidden checkBoxTable"
+                                                   style="width:100%">
+                                                <tr>
+                                                    <td><label id="checkbox1"><input class="checkBoxes" name="checkbox1"
+                                                                                     type="checkbox"> 12am-1am</label>
+                                                    </td>
+                                                    <td><label id="checkbox2"><input class="checkBoxes" name="checkbox2"
+                                                                                     type="checkbox"> 1am-2am</label>
+                                                    </td>
+                                                    <td><label id="checkbox3"><input class="checkBoxes" name="checkbox3"
+                                                                                     type="checkbox"> 2am-3am</label>
+                                                    </td>
+                                                    <td><label id="checkbox4"><input class="checkBoxes" name="checkbox4"
+                                                                                     type="checkbox"> 3am-4am</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label id="checkbox5"><input class="checkBoxes" name="checkbox5"
+                                                                                     type="checkbox"> 4am-5am</label>
+                                                    </td>
+                                                    <td><label id="checkbox6"><input class="checkBoxes" name="checkbox6"
+                                                                                     type="checkbox"> 5am-6am</label>
+                                                    </td>
+                                                    <td><label id="checkbox7"><input class="checkBoxes" name="checkbox7"
+                                                                                     type="checkbox"> 6am-7am</label>
+                                                    </td>
+                                                    <td><label id="checkbox8"><input class="checkBoxes" name="checkbox8"
+                                                                                     type="checkbox"> 7am-8am</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label id="checkbox9"><input class="checkBoxes" name="checkbox9"
+                                                                                     type="checkbox"> 8am-9am</label>
+                                                    </td>
+                                                    <td><label id="checkbox10"><input class="checkBoxes"
+                                                                                      name="checkbox10" type="checkbox">
+                                                        9am-10am</label></td>
+                                                    <td><label id="checkbox11"><input class="checkBoxes"
+                                                                                      name="checkbox11" type="checkbox">
+                                                        10am-11am</label></td>
+                                                    <td><label id="checkbox12"><input class="checkBoxes"
+                                                                                      name="checkbox12" type="checkbox">
+                                                        11am-12pm</label></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><label id="checkbox13"><input class="checkBoxes"
+                                                                                      name="checkbox13" type="checkbox">
+                                                        12pm-1pm</label></td>
+                                                    <td><label id="checkbox14"><input class="checkBoxes"
+                                                                                      name="checkbox14" type="checkbox">
+                                                        1pm-2pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox15"><input class="checkBoxes"
+                                                                                      name="checkbox15" type="checkbox">
+                                                        2pm-3pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox16"><input class="checkBoxes"
+                                                                                      name="checkbox16" type="checkbox">
+                                                        3pm-4pm</label>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><label id="checkbox17"><input class="checkBoxes"
+                                                                                      name="checkbox17" type="checkbox">
+                                                        4pm-5pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox18"><input class="checkBoxes"
+                                                                                      name="checkbox18" type="checkbox">
+                                                        5pm-6pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox19"><input class="checkBoxes"
+                                                                                      name="checkbox19" type="checkbox">
+                                                        6pm-7pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox20"><input class="checkBoxes"
+                                                                                      name="checkbox20" type="checkbox">
+                                                        7pm-8pm</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label id="checkbox21"><input class="checkBoxes"
+                                                                                      name="checkbox21" type="checkbox">
+                                                        8pm-9pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox22"><input class="checkBoxes"
+                                                                                      name="checkbox22" type="checkbox">
+                                                        9pm-10pm</label>
+                                                    </td>
+                                                    <td><label id="checkbox23"><input class="checkBoxes"
+                                                                                      name="checkbox23" type="checkbox">
+                                                        10pm-11pm</label></td>
+                                                    <td><label id="checkbox24"><input class="checkBoxes"
+                                                                                      name="checkbox24" type="checkbox">
+                                                        11pm-12am</label>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                        </li>
+                                        <li>
+                                            <div class="uk-form-icon uk-margin-small-bottom">
+                                                <i class="uk-icon-calendar formIcon"></i>
+                                                <input style="width: 150px;" type="text" readonly
+                                                       class="uk-form-large uk-text-center dayFieldRentNow datePickerPerDayAndMonth"
+                                                       readonly id="datePickerPerDayRentNow" name="datePerDayRentNow"
+                                                       placeholder="Date"
+                                                       onchange="updateDayTimeFrame('durationDaysRentNow', 'datePickerPerDayRentNow', 'timeFrameDaysRentNow', 'timeFrameSorryDaysRentNow')">
+                                            </div>
+                                            <div class="uk-form-icon uk-margin-small-bottom">
+                                                <i class="uk-icon-clock-o formIcon"></i>
+                                                <input style="width: 150px;" type="number"
+                                                       class="uk-form-large uk-text-center dayFieldRentNow"
+                                                       id="durationDaysRentNow" min="0" max="20"
+                                                       name="durationDaysRentNow" placeholder="Duration"
+                                                       onchange="updateDayTimeFrame('durationDaysRentNow', 'datePickerPerDayRentNow', 'timeFrameDaysRentNow', 'timeFrameSorryDaysRentNow')">
+                                            </div>
+                                            <div class="uk-alert uk-hidden uk-align-center timeFrameText"
+                                                 id="timeFrameDaysRentNow"></div>
+                                            <div class="uk-alert uk-alert-danger uk-hidden uk-align-center uk-margin-top-remove timeFrameSorryDays"
+                                                 id="timeFrameSorryDaysRentNow"></div>
+                                        </li>
+                                        <li>
+                                            <div class="uk-form-icon uk-margin-small-bottom">
+                                                <i class="uk-icon-clock-o formIcon"></i>
+                                                <input style="width: 150px;" id="datePickerPerMonthRentNow"
+                                                       class="uk-form-large uk-text-center monthFieldRentNow datePickerPerDayAndMonth"
+                                                       name="datePerMonthRentNow" placeholder="Month"
+                                                       onchange="updateMonthTimeFrame('durationMonthsRentNow', 'datePickerPerMonthRentNow', 'timeFrameMonthsRentNow')">
+                                            </div>
+                                            <div class="uk-form-icon uk-margin-small-bottom">
+                                                <i class="uk-icon-clock-o formIcon"></i>
+                                                <input style="width: 150px;" type="number"
+                                                       class="uk-form-large uk-text-center monthFieldRentNow"
+                                                       id="durationMonthsRentNow" name="durationMonthsRentNow"
+                                                       placeholder="Duration"
+                                                       onchange="updateMonthTimeFrame('durationMonthsRentNow', 'datePickerPerMonthRentNow', 'timeFrameMonthsRentNow')">
+                                            </div>
+                                            <div class="uk-alert uk-hidden uk-align-center timeFrameTextRentNow timeFrameText"
+                                                 id="timeFrameMonthsRentNow"></div>
+                                            <div class="uk-alert uk-alert-danger uk-hidden uk-align-center"
+                                                 id="timeFrameSorryMonthsRentNow"></div>
+                                        </li>
+                                    </ul>
+                                    <hr>
+                                </div>
+                                <div class="uk-form-controls uk-form-icon uk-margin-small-bottom">
+                                    <i class="uk-icon-dollar formIcon"></i>
+                                    <input readonly style="width: 300px;"
+                                           class="uk-form-large uk-text-center fieldRentNow" name="price" id="price"
+                                           placeholder="0">
+                                </div>
+                                <div class="uk-form-icon uk-margin-small-bottom">
+                                    <i class="uk-icon-user formIcon"></i>
+                                    <input style="width: 300px;" class="uk-form-large uk-text-center fieldRentNow"
+                                           type="text" id="nameOnCardRentNow" placeholder="Name on Card">
+                                </div>
+                                <div class="uk-form-icon uk-margin-small-bottom">
+                                    <i class="uk-icon-credit-card formIcon"></i>
+                                    <input style="width: 300px;" class="uk-form-large uk-text-center fieldRentNow"
+                                           type="text" id="cardNumberRentNow" placeholder="Card Number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <div class="uk-form-icon uk-margin-small-bottom">
+                                <i class="uk-icon-calendar-o formIcon"></i>
+                                <input style="width: 150px;" class="uk-form-large uk-text-center fieldRentNow"
+                                       maxlength="5" id="expDateRentNow" placeholder="MM/YY">
+                            </div>
+                            <input style="width: 150px;" type="number"
+                                   class=" fieldRentNow uk-form-large uk-text-center" id="CVCRentNow" placeholder="CVC">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right modalFooter" id="modalFooter">
+            <button class="uk-button uk-button-primary" id="rentNowBtn" name="minPrice" type="button">
+                Submit
+            </button>
+            <button class="uk-hidden" id="perHour" value="{{perHour}}"></button>
+            <button class="uk-hidden" id="perDay" value="{{perDay}}"></button>
+            <button class="uk-hidden" id="perMonth" value="{{perMonth}}"></button>
+        </div>
+    </div>
+</div>

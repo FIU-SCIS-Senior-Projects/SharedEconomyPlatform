@@ -1,0 +1,104 @@
+<div id="topLevelContainer">
+    <div id="newListingImageContainer">
+        <img class="uk-responsive-width" id="newListingImage" src="/images/people-coffee-tea-meeting-C.jpg" alt="People Meeting">
+        <div class="uk-button-group" data-uk-button-radio data-uk-switcher="{connect:'#newListingHints,#newListingForms'}">
+            <button class="uk-button uk-button-primary left">Details</button>
+            <button class="uk-button uk-button-primary" id="newListingLocationTab">Location</button>
+            <button class="uk-button uk-button-primary right">Photos</button>
+        </div>
+        <button class="uk-button uk-button-primary right" id="newListingDoneButton">Done!</button>
+    </div>
+
+
+    <div class="uk-grid uk-margin-remove" id="newListingBottomGrid">
+
+        <div class="uk-width-1-1 uk-width-medium-1-3" id="newListingLeftContainer">
+            <ul id="newListingHints" class="uk-switcher">
+                <li>
+                    {{>new_listing/details_hint}}
+                </li>
+                <li>
+                    {{>new_listing/location_hint}}
+                </li>
+                <li>
+                    {{>new_listing/photos_hint}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="uk-width-1-1 uk-width-medium-2-3" id="newListingRightContainer">
+            <ul id="newListingForms" class="uk-switcher ">
+                <li>
+                    {{>new_listing/details}}
+                </li>
+                <li id="locationLi">
+                    {{>new_listing/location}}
+                </li>
+                <li>
+                    {{>new_listing/photos}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $("#newListingDoneButton").click(function(){
+        getFormData(function(data){
+
+            $.ajax({
+                url: '/newlisting/new',
+                type: 'POST',
+                dataType: 'json',
+                mimeType: 'multipart/form-data',
+                processData: false, // important
+                contentType: false, // important
+                data: data
+            }).fail(function(){
+                console.log(arguments);
+                window.location.replace("/");
+            }).success(function(data){
+                console.log(data.createdSpace)
+                window.location.replace("/viewspace/" + data.createdSpace._id);
+            });
+        });
+    });
+
+    function formDataFromArrays() {
+        var formData = new FormData();
+        for (var i in arguments) {
+            var array = arguments[i];
+            for (var index in array) {
+                var item = array[index];
+                formData.append(item.name, item.value);
+            }
+        }
+        return formData;
+    }
+
+
+    function getFormData(callback){
+
+        var features = [];
+        $(".featureCheckBox").each(function(i, checkbox){
+            if($(this).hasClass("uk-active")){
+                features.push({name: this.name, value: this.value});
+            }
+        });
+        features.push({name: "lng", value: window.geolocation.lng});
+        features.push({name: "lat", value: window.geolocation.lat});
+        var form1 = $("#newListingDetailsForm1").serializeArray(),
+                form2 = $("#newListingDetailsForm2").serializeArray();
+
+        var formData = formDataFromArrays(form1, form2, features);
+
+//        var formData = new FormData();
+
+        for (var key in window.filesToUpload) {
+//            console.log(window.filesToUpload[key]);
+            formData.append("newListingPhotos[]", window.filesToUpload[key], window.filesToUpload[key].name);
+        }
+        callback(formData);
+    }
+</script>

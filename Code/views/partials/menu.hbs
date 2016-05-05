@@ -1,0 +1,550 @@
+<button id="menuShowBtn" type="button" class="uk-button animated {{ifMatch title "['ShareSpace - Sign-in', 'ShareSpace - Register']" "uk-hidden"}}">Menu</button>
+
+<div class="uk-panel animated {{unlessMatch title "['HyperDesk - Sign-in', 'ShareSpace - Register']" "uk-hidden"}}"
+     id="menu">
+    <div id="menuTopBar">
+        <button id="menuHideBtn" type="button" class="uk-button"><i class="uk-icon-arrow-left"></i></button>
+        <h3 class="uk-panel-title" id="menuTitle">Menu</h3>
+    </div>
+
+
+        <ul class="uk-nav uk-nav-side">
+            <li {{ifMatch title '["HyperDesk"]' "class='uk-active'"}}><a href="/"><i
+                    class="uk-icon-home uk-icon-small"></i> Home</a></li>
+            <li class="uk-nav-divider"></li>
+            {{#unless user}}
+                <li {{ifMatch title "['HyperDesk - Sign-in']" "class='uk-active'"}}><a href="/login">Login</a></li>
+                <li {{ifMatch title "['HyperDesk - Register']" "class='uk-active'"}}><a href="/register">Register</a>
+                </li>
+            {{/unless}}
+            {{#if user}}
+                <li {{ifMatch title "['HyperDesk - New Listing']" "class='uk-active'"}}><a href="/newlisting">List New
+                    Space</a></li>
+                <li {{ifMatch title "['HyperDesk - Profile']" "class='uk-active'"}}><a
+                        href="/profile/{{user.username}}">Profile</a></li>
+                <li><a href="#offersModal" data-uk-modal="{center:true}">Offers</a></li>
+                <li><a href="#messagesModal" data-uk-modal="{center:true}">Mailbox</a></li>
+                <li class="uk-nav-divider"></li>
+                <li><a href="/logout">Logout</a></li>
+            {{/if}}
+        </ul>
+</div>
+
+<!-- Modals -->
+{{#if user}}
+    <div id="offersModal" class="uk-modal" data-user="{{user._id}}">
+        <div class="uk-modal-dialog">
+            <a href="" class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header" id="modalHeader">
+                <h2>My Offers</h2>
+            </div>
+            <div id="modalBody">
+                <ul class="uk-tab uk-width-1-1" data-uk-tab="{connect:'#bodyContainer'}">
+                    <li data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="false" class="uk-active">
+                        <a href="#">Received <i class="uk-icon-caret-down"></i></a>
+                        <div class="uk-dropdown uk-dropdown-small uk-dropdown-bottom" style="top: 37px; left: 0px;">
+                            <ul class="uk-nav uk-nav-dropdown" data-uk-tab="{connect:'#acceptedAndPending'}">
+                                <li><a href="#">Pending</a></li>
+                                <li><a href="#">Accepted</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="false">
+                        <a href="#">Sent <i class="uk-icon-caret-down"></i></a>
+                        <div class="uk-dropdown uk-dropdown-small uk-dropdown-bottom" style="top: 37px; left: 0px;">
+                            <ul class="uk-nav uk-nav-dropdown" data-uk-tab="">
+                                <li><a href="#">test</a></li>
+                                <li><a href="#">test2</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    </li>
+                </ul>
+                <ul id="bodyContainer" class="uk-switcher uk-margin">
+                    <li class="options" id="receivedOffers">
+                        <ul id="acceptedAndPending" class="uk-switcher uk-margin">
+                            <li>
+                                <h2 class="uk-text-center">Pending</h2>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-3 leftOfferPane" id="pendingRecLeftOfferPane">
+                                        <ul class="uk-nav uk-nav-side" id="pendingRecOffersList">
+                                        </ul>
+                                    </div>
+                                    <div class="uk-width-2-3 rightOfferPane uk-panel" id="pendingRecRightOfferPane">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="uk-text-center">Accepted</h2>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-3 leftOfferPane" id="acceptedRecLeftOfferPane">
+                                        <ul class="uk-nav uk-nav-side" id="acceptedRecOffersList">
+                                        </ul>
+                                    </div>
+                                    <div class="uk-width-2-3 rightOfferPane" id="acceptedRecRightOfferPane">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="options" id="sentOffers">
+
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="uk-modal-footer uk-text-right" id="modalFooter">
+                <button type="button" class="uk-button uk-button-primary uk-modal-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="messagesModal" class="uk-modal" data-user="{{user._id}}">
+        <div class="uk-modal-dialog">
+            <a href="" class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header" id="modalHeader">
+                <h2>Mailbox</h2>
+            </div>
+            <div id="modalBody">
+                <ul class="uk-tab uk-width-1-1" data-uk-tab="{connect:'#messageModalBodyContainer'}">
+                    <li data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="false" class="uk-active">
+                        <a href="#">Messages <i class="uk-icon-caret-down"></i></a>
+                        <div class="uk-dropdown uk-dropdown-small uk-dropdown-bottom" style="top: 37px; left: 0px;">
+                            <ul class="uk-nav uk-nav-dropdown" data-uk-tab="{connect:'#inboxAndSent'}">
+                                <li><a href="#">Inbox</a></li>
+                                <li><a href="#">Sent</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" id="composeNewTab">Compose New <i class="uk-icon-plus"></i></a>
+                    </li>
+                    </li>
+                </ul>
+                <ul id="messageModalBodyContainer" class="uk-switcher uk-margin">
+                    <li class="options" id="writeNewContainer">
+                        <ul id="inboxAndSent" class="uk-switcher uk-margin">
+                            <li>
+                                <h2 class="uk-text-center">Inbox</h2>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-3 leftOfferPane" id="inboxLeftMessagePane">
+                                        <ul class="uk-nav uk-nav-side" id="inboxList">
+                                        </ul>
+                                    </div>
+                                    <div class="uk-width-2-3 rightOfferPane uk-panel" id="inboxRightMessagePane">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="uk-text-center">Sent</h2>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-3 leftOfferPane" id="sentLeftMessagePane">
+                                        <ul class="uk-nav uk-nav-side" id="sentList">
+                                        </ul>
+                                    </div>
+                                    <div class="uk-width-2-3 rightOfferPane" id="sentRightMessagePane">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="options">
+                        <div class="uk-form">
+                            <div class="uk-form-row uk-margin-bottom">
+                                <label class="uk-form-label" for="form-h-it">Sending to:</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-width-1-1" type="text" id="newMessageRecipient"
+                                           placeholder="Recipient username">
+                                </div>
+                            </div>
+                            <div class="uk-form-row uk-margin-bottom">
+                                <label class="uk-form-label" for="form-h-it">Subject:</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-width-1-1" type="text" id="newMessageSubject"
+                                           placeholder="Write subject...">
+                                </div>
+                            </div>
+
+                            <div class="uk-form-row uk-margin-bottom">
+                                <label class="uk-form-label" for="form-h-t">Message</label>
+                                <div class="uk-form-controls">
+                                    <textarea class="uk-width-1-1" id="newMessageArea" rows="10"
+                                              placeholder="Write your message here..."></textarea>
+                                </div>
+                            </div>
+                            <button type="button" class="uk-button uk-button-primary uk-align-right"
+                                    id="sendNewMessageBtn">Send
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="uk-modal-footer uk-text-right" id="modalFooter">
+                <button type="button" class="uk-button uk-button-primary uk-modal-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <a href="#sentConfirmation" class="uk-hidden" id="confirmationModalBtn" data-uk-modal=""></a>
+    <div id="sentConfirmation" class="uk-modal">
+        <div class="uk-modal-dialog">
+            <a href="" class="uk-modal-close uk-close"></a>
+            <p id="sentConfirmationMessage">Message Sent!</p>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        /**
+         * MAILBOX
+         */
+        var receivedMessagesMap = {},
+                sentMessageMap = {};
+
+        function buildMessages(data) {
+            var receivedMessages = data.receivedMessages,
+                    sentMessages = data.sentMessages,
+                    receivedListHTML = "",
+                    sentListHTML = "";
+
+            $.each(receivedMessages, function (i, receivedMessage) {
+                receivedListHTML += '<li class="messageLi" onclick="messageSelected(&quot;received&quot;, &quot;' + receivedMessage.messageId + '&quot;)" id="' + receivedMessage.messageId + '"><a href="#">' + receivedMessage.sentDate + '</a></li>'
+                receivedMessagesMap[receivedMessage.messageId] = receivedMessage;
+            });
+
+            $("#inboxList").append(receivedListHTML);
+
+            $.each(sentMessages, function (i, sentMessage) {
+                sentListHTML += '<li class="messageLi" onclick="messageSelected(&quot;sent&quot;, &quot;' + sentMessage.messageId + '&quot;)" id="' + sentMessage.messageId + '"><a href="#">' + sentMessage.sentDate + '</a></li>'
+                sentMessageMap[sentMessage.messageId] = sentMessage;
+            });
+
+            $("#sentList").append(sentListHTML);
+        }
+
+        function messageSelected(type, messageId) {
+            //highlight selected offer
+            $(".messageLi").each(function (index, li) {
+                $(li).removeClass("uk-active");
+            });
+            $("#" + messageId).addClass("uk-active");
+            if (type === "received") {
+                var messageObject = receivedMessagesMap[messageId];
+                buildMessagePane("received", "#inboxRightMessagePane", messageObject);
+            } else if (type === "sent") {
+                var messageObject = sentMessageMap[messageId];
+                buildMessagePane("sent", "#sentRightMessagePane", messageObject);
+            }
+        }
+
+        $("#sendNewMessageBtn").click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/mailbox/send",
+                method: "POST",
+                data: {
+                    username: $("#newMessageRecipient").val(),
+                    subject: $("#newMessageSubject").val(),
+                    message: $("#newMessageArea").val()
+                }
+            }).success(function (data) {
+                console.log(data);
+                $("#sentConfirmationMessage").text("Message sent!");
+                $("#confirmationModalBtn").trigger("click");
+                buildMessages(data);
+            }).fail(function (data) {
+                $("#sentConfirmationMessage").text("Error sending!");
+                $("#confirmationModalBtn").trigger("click");
+            });
+
+        });
+
+        function deleteMessageFromDOM(messageId) {
+            if ($("#" + messageId).hasClass("uk-active")) {
+                $("#inboxRightMessagePane").html("");
+                $("#sentRightMessagePane").html("");
+            }
+            $("#" + messageId).remove();
+        }
+
+        function buildMessagePane(type, paneId, messageObject) {
+            console.log(arguments);
+
+            var headerLine = "",
+                    sentOrReceivedDate = "";
+            if (type === "received") {
+                headerLine = "Sent By: " + messageObject.sender.username;
+                sentOrReceivedDate = "Date Received: " + messageObject.sentDate;
+            } else if (type === "sent") {
+                headerLine = "Sent To: " + messageObject.recipient.username;
+                sentOrReceivedDate = "Date Sent: " + messageObject.sentDate;
+            }
+
+            var messageHTML = '<div class="uk-panel">'
+                    + '<h3 class="uk-panel-title">' + headerLine + '</h3>'
+                    + '<p>'
+                    + sentOrReceivedDate
+                    + '</p>'
+                    + '<p>'
+                    + 'Subject: ' + messageObject.subject
+                    + '</p>'
+                    + '<p>'
+                    + 'Message: ' + messageObject.message
+                    + '</p>'
+                    + '</div>';
+            $(paneId).html(messageHTML);
+        }
+
+
+        $('#messagesModal').on({
+
+            'show.uk.modal': function () {
+                var url = "/mailbox/mymessages",
+                        user = {userId: $("#messagesModal").attr("data-user")};
+                $.ajax({
+                    method: "POST",
+                    url: url,
+                    data: user
+                }).success(function (data) {
+//                    console.log(arguments);
+                    buildMessages(data);
+                });
+            },
+
+            'hide.uk.modal': function () {
+                $("#inboxList").html("");
+                $("#inboxRightMessagePane").html("");
+
+                $("#sentList").html("");
+                $("#sentRightMessagePane").html("");
+
+                $("#newMessageRecipient").val("");
+                $("#newMessageSubject").val("");
+                $("#newMessageArea").val("");
+
+                receivedMessagesMap = {},
+                        sentMessageMap = {};
+            }
+        });
+
+
+        /**
+         * Context Menu
+         */
+
+        $(function () {
+            $.contextMenu({
+                selector: '.messageLi',
+                callback: function (key, options) {
+                    var m = "clicked: " + key;
+                    window.console && console.log(m) || alert(m);
+                },
+                items: {
+                    "reply": {
+                        name: "Reply",
+                        callback: function (itemKey, opt) {
+//                          Alert the key of the item and the trigger element's id.
+                            var senderId = opt.$trigger[0].id;
+                            $("#newMessageRecipient").val(receivedMessagesMap[senderId].sender.username);
+                            $("#composeNewTab").trigger("click");
+//                            // Do not close the menu after clicking an item
+//                            return false;
+                        }
+                    },
+                    "delete": {
+                        name: "Delete",
+                        icon: "delete",
+                        callback: function (itemKey, opt) {
+                            var messageId = opt.$trigger[0].id;
+                            $.ajax({
+                                url: '/mailbox/delete',
+                                method: 'POST',
+                                data: {messageId: messageId}
+                            }).success(function () {
+                                deleteMessageFromDOM(messageId);
+                            });
+                        }
+                    },
+                }
+            });
+        });
+
+
+        /**
+         * OFFERS
+         */
+        var pendingOfferMap = {},
+            acceptedOfferMap = {};
+
+        function buildReceivedOffers(data){
+            var pendingOffers = data.pending,
+                acceptedOffers = data.accepted,
+                pendingListHTML = "",
+                acceptedListHTML = "";
+
+            $.each(pendingOffers, function(i, pendingOffer){
+                pendingListHTML += '<li class="offerLi" onclick="offerSelected(&quot;pending&quot;, &quot;' + pendingOffer.offerId + '&quot;)" id="'+ pendingOffer.offerId +'"><a href="#">'+ pendingOffer.offerDetails.dateMade +'</a></li>'
+                pendingOfferMap[pendingOffer.offerId] = pendingOffer;
+            });
+
+            $("#pendingRecOffersList").append(pendingListHTML);
+
+            $.each(acceptedOffers, function(i, acceptedOffer){
+                acceptedListHTML += '<li class="offerLi" onclick="offerSelected(&quot;accepted&quot;, &quot;' + acceptedOffer.offerId + '&quot;)" id="'+ acceptedOffer.offerId +'"><a href="#">'+ acceptedOffer.offerDetails.dateMade +'</a></li>'
+                acceptedOfferMap[acceptedOffer.offerId] = acceptedOffer;
+            });
+
+            $("#acceptedRecOffersList").append(acceptedListHTML);
+        }
+
+        function offerSelected(type, offerId){
+            //highlight selected offer
+            $(".offerLi").each(function(index, li){
+                $(li).removeClass("uk-active");
+            });
+            $("#" + offerId).addClass("uk-active");
+            if(type === "pending"){
+                var offerObject = pendingOfferMap[offerId];
+                buildOfferPane("pending", "#pendingRecRightOfferPane", offerObject);
+            }else if(type === "accepted"){
+                var offerObject = acceptedOfferMap[offerId];
+                buildOfferPane("accepted", "#acceptedRecRightOfferPane", offerObject);
+            }
+        }
+
+        function acceptOffer(offerId){
+            $.ajax({
+                url:"/offer/accept",
+                method: "POST",
+                data: {offerId: offerId}
+            }).success(function(data){
+                console.log(data);
+                buildReceivedOffers(data);
+                deleteOfferFromDOM(data.deletedId)
+            });
+        }
+
+        function declineOffer(offerId){
+            $.ajax({
+                url:"/offer/decline",
+                method: "POST",
+                data: {offerId: offerId}
+            }).success(function(data){
+                deleteOfferFromDOM(data.offerId);
+            });
+        }
+
+        function deleteOfferFromDOM(offerId){
+            if($("#" + offerId).hasClass("uk-active")){
+                $("#pendingRecRightOfferPane").html("");
+            }
+            $("#" + offerId).remove();
+        }
+
+        function buildOfferPane(type, paneId, offerObject){
+            console.log(arguments);
+            var offerHTML =
+                    '<div class="uk-panel">';
+            if(type === "pending"){
+                offerHTML +='<div class="uk-panel-badge uk-badge uk-badge-warning">Pending</div>';
+            }else{
+                offerHTML +='<div class="uk-panel-badge uk-badge uk-badge-success">Accepted</div>';
+            }
+            offerHTML += '<h3 class="uk-panel-title">'+ offerObject.space.name +'</h3>'
+                    +'<p>'
+                    +'Offer amount of : $' + offerObject.offerDetails.amount + '.00'
+                    +'</p>'
+                    +'<p>'
+                    +'Made by : ' + offerObject.offerOwner.fullName
+                    +'</p>'
+                    +'<p>'
+                    +'On date : ' + offerObject.offerDetails.dateMade
+                    +'</p>'
+                    +'<br>'
+                    +'<p>'
+                    +'Location wanted : ' + '<a href="/viewspace/'+ offerObject.space.id +'">'+ offerObject.space.name +'</a>'
+                    +'</p>'
+                    +'<p>'
+                    +'Offer type : ' + offerObject.offerDetails.type
+                    +'</p>'
+                    +'<p>'
+                    +'Date(s) wanted : ' + offerObject.offerDetails.dates
+                    +'</p>'
+                    +'<p>'
+                    +'Hour(s) wanted : ' + offerObject.offerDetails.hours
+                    +'</p>';
+            if(type === "pending"){
+                offerHTML += '<button onclick="acceptOffer(&quot;' + offerObject.offerId + '&quot;)" class="uk-button uk-button-primary uk-margin-right" type="button">Accept</button>'
+                            +'<button onclick="declineOffer(&quot;' + offerObject.offerId + '&quot;)" class="uk-button uk-button-danger" type="button">Decline</button>'
+            }
+            offerHTML += '</div>';
+
+            $(paneId).html(offerHTML);
+        }
+
+
+
+        $('#offersModal').on({
+
+            'show.uk.modal': function(){
+                var url = "/offer/myoffers",
+                    user = { userId: $("#offersModal").attr("data-user") };
+                $.ajax({
+                    method: "POST",
+                    url: url,
+                    data: user
+                }).success(function(data){
+                    buildReceivedOffers(data);
+                });
+            },
+
+            'hide.uk.modal': function(){
+                $("#pendingRecOffersList").html("");
+                $("#pendingRecRightOfferPane").html("");
+
+                $("#acceptedRecOffersList").html("");
+                $("#acceptedRecRightOfferPane").html("");
+
+                pendingOfferMap = {},
+                acceptedOfferMap = {};
+            }
+        });
+    </script>
+
+{{/if}}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#menuShowBtn").click(function(){
+            $("#menuShowBtn").addClass("bounceOutLeft");
+            $("#menuShowBtn").removeClass("bounceInLeft");
+//            $('#menuShowBtn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+//                $("#menuShowBtn").addClass("uk-hidden");
+//            });
+            $("#menu").addClass("bounceInLeft");
+            $("#menu").removeClass("uk-hidden bounceOutLeft");
+
+        });
+
+        $("#menuHideBtn").click(function(){
+            $("#menu").removeClass("bounceInLeft");
+            $("#menu").addClass("bounceOutLeft");
+//            $('#menu').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+//                $("#menu").addClass("uk-hidden");
+//            });
+            $("#menuShowBtn").removeClass("bounceOutLeft");
+            $("#menuShowBtn").addClass("bounceInLeft");
+            $("#menuShowBtn").removeClass("uk-hidden");
+
+        });
+
+
+    });
+</script>

@@ -1,0 +1,44 @@
+<div class="uk-height-viewport uk-text-center uk-vertical-align loginRegisterWrapper">
+
+    <div id="registrationContainer" class="uk-vertical-align-middle">
+
+        <h1 class="loginRegisterHeader">Write a Review</h1>
+
+        <div class="uk-container loginRegisterFormContainer">
+
+            <form class="uk-form" action="/review" method="post" role="form" id="reviewSpaceForm">
+                <div class="uk-form-row uk-margin-large-top">
+                    <!--<form id="ratingsForm">-->
+                    <div id="starsDiv">
+                        <h3 class="" id="selectRatingTitle">Select your rating:</h3>
+                        <div class="stars">
+                            <input value="1" type="radio" name="star" class="star-1" id="star-1"/>
+                            <label data-uk-tooltip title="It sucked!" class="star-1" for="star-1">1</label>
+                            <input value="2" type="radio" name="star" class="star-2" id="star-2"/>
+                            <label data-uk-tooltip title="OK" class="star-2" for="star-2">2</label>
+                            <input value="3" type="radio" name="star" class="star-3" id="star-3"/>
+                            <label data-uk-tooltip title="Not bad" class="star-3" for="star-3">3</label>
+                            <input value="4" type="radio" name="star" class="star-4" id="star-4"/>
+                            <label data-uk-tooltip title="Great!" class="star-4" for="star-4">4</label>
+                            <input value="5" type="radio" name="star" class="star-5" id="star-5"/>
+                            <label data-uk-tooltip title="Amazing!!!" class="star-5" for="star-5">5</label>
+                            <span></span>
+                        </div>
+                    </div>
+                    <!--</form>-->
+                    {{>error_text_alert errors}}
+                    <div class="uk-form-controls">
+                        <textarea name="reviewInput" class="uk-margin-bottom uk-margin-top" id="reviewInput" cols="70"
+                                  rows="8" placeholder="Review the office space..."></textarea>
+                    </div>
+                </div>
+                <a class="uk-margin-top" href="/viewspace/{{id}}">Go Back</a>
+                <button name="reviewId" value="{{id}}"
+                        class="uk-button uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-top uk-margin-large-bottom"
+                        type="submit" data-uk-button>Post
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+

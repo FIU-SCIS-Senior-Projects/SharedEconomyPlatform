@@ -1,0 +1,134 @@
+{{>uikit_components/upload}}
+{{>uikit_components/placeholder}}
+{{>uikit_components/slideset}}
+{{>uikit_components/lightbox}}
+
+<div class="uk-width-1-1 uk-container-center" id="newListingPhotosUploadContainer">
+    <!--Upload-->
+    <div id="newListingUploadDrop" class="uk-placeholder uk-text-center">
+        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> Attach photos by dropping them here or <a class="uk-form-file">selecting one<input id="newListingUploadSelect" type="file"></a>.
+    </div>
+    <!--&lt;!&ndash;Progress Bar&ndash;&gt;-->
+    <!--<div id="newListingProgressBar" class="uk-progress uk-hidden">-->
+        <!--<div class="uk-progress-bar" style="width: 0%;">0%</div>-->
+    <!--</div>-->
+</div>
+
+<div class="uk-width-1-1 uk-container-center uk-margin-large-top uk-panel-header" id="newListingPhotosPreviewContainer" data-uk-observe>
+    {{>panel_header "Image Preview"}}
+    <div class="uk-margin" id="slidesetContainer">
+        <div class="uk-slidenav-position">
+            <ul class="uk-grid uk-slideset uk-flex-center" id="newListingPreviewUl">
+                <!--<li>-->
+                    <!--<a href="images/placeholder_800x600_1.jpg" data-uk-lightbox="{group:'group1'}" title="Title">-->
+                        <!--<img src="images/placeholder_800x600_1.jpg" width="800" height="600" alt="">-->
+                    <!--</a>-->
+                <!--</li>-->
+            </ul>
+            <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+            <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideset-item="next"></a>
+        </div>
+        <!--<ul class="uk-slideset-nav uk-dotnav uk-flex-center">...</ul>-->
+    </div>
+</div>
+
+<script>
+
+    var fileLimit = 7;
+    var filesToUpload = {};
+    var imagePreviewCount = 0;
+    var tempImageExists = true;
+
+    //Makes a copy of the slideset container,
+    //deletes the existing one and appends the copy
+    //this is done to allow the manual initialization of the slideset when user drops images
+    function copyAndReAppendSlideset(){
+        var div = $("#slidesetContainer")[0];
+        $("#slidesetContainer").remove();
+        $("#newListingPhotosPreviewContainer")[0].appendChild(div);
+    }
+
+    function setCloseButtonListeners(){
+        $(".closeButtons").click(function(e){
+            e.preventDefault();
+
+            var imageId = $(this).attr("href");
+            //Revoke url when an image is deleted
+            window.URL.revokeObjectURL($(imageId));
+            //delete file being stored
+            delete filesToUpload[imageId];
+            imagePreviewCount--;
+
+
+
+            $(this).parent().remove();
+            copyAndReAppendSlideset();
+            var slideset = UIkit.slideset("#slidesetContainer", { small: 2, medium: 4, large: 4, xlarge: 6 });
+            setCloseButtonListeners();
+        });
+    }
+
+    $(function(){
+
+        var progressbar = $("#newListingProgressBar"),
+            bar         = progressbar.find('.uk-progress-bar'),
+            settings    = {
+
+//                action: '/', // upload url
+
+                allow : '*.(jpg|jpeg|png)', // allow only images
+
+                filelimit: fileLimit,
+
+                beforeAll: function(files){
+
+                    if(imagePreviewCount < fileLimit){
+                        copyAndReAppendSlideset();//removes slideset instance so we can initialize the updated one
+
+                        console.log(files);
+                        for (var i = 0; i < files.length && imagePreviewCount < fileLimit; i++, imagePreviewCount++) {
+                            var imagePreviewId = "imagePreview" + imagePreviewCount;
+                            var file = files[i];
+                            console.log(file);
+                            filesToUpload[imagePreviewId] = file;
+                            var previewUl = $("#newListingPreviewUl")[0];
+
+                            var li = document.createElement("li");
+                            li.classList.add("uk-text-right");//align close button on right
+
+                            var anchor = document.createElement("a");
+                            var closeButton = document.createElement("a");
+                            closeButton.classList.add("uk-close", "closeButtons");
+                            closeButton.setAttribute("href", imagePreviewId);
+
+//                            anchor.id = imagePreviewId;
+                            anchor.classList.add("previewImages");
+                            anchor.setAttribute("data-uk-lightbox", "{group:'group1'}");
+                            anchor.setAttribute("data-lightbox-type","image");
+
+
+                            var img = document.createElement("img");
+                            img.src = anchor.href = window.URL.createObjectURL(file);
+                            img.id = imagePreviewId;
+                            li.appendChild(closeButton);
+                            li.appendChild(anchor);
+                            previewUl.appendChild(li);
+//                            img.width = 800;
+//                            img.height = 600;
+
+                            anchor.appendChild(img);
+
+                        }
+                        var slideset = UIkit.slideset("#slidesetContainer", { small: 2, medium: 4, large: 4, xlarge: 6 });
+                        setCloseButtonListeners();
+                    }
+
+                }
+            };
+
+//        TODO: consider modifying below methods to prevent post request attempts
+        var select = UIkit.uploadSelect($("#newListingUploadSelect"), settings),
+            drop   = UIkit.uploadDrop($("#newListingUploadDrop"), settings);
+    });
+
+</script>

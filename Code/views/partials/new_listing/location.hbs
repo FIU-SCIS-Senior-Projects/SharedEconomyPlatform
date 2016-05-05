@@ -1,0 +1,112 @@
+{{>google_maps_loader}}
+
+<div class="uk-width-1-1 uk-container-center" id="newListingMapContainer">
+    <div class="uk-height-1-1 uk-width-1-1" id="newListingMap"></div>
+</div>
+<div class="uk-width-1-1 uk-container-center uk-margin-large-top" id="newListingSearchContainer">
+    <form class="uk-form uk-text-center" id="newListingSearchForm">
+        <div class="uk-form-icon uk-width-1-1">
+            <i class="uk-icon-search"></i>
+            <input class="uk-form-large  uk-width-small-1-1 uk-width-medium-1-2" type="text" id="newListingSearch"  placeholder="Enter an address...">
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    $("#newListingSearchForm").on('submit',function(e){
+        e.preventDefault();
+    });
+
+    $("#newListingLocationTab").one('click', function(){
+        GoogleMapsLoader.load(function(google) {
+            var searchElement = $("#newListingSearch")[0];
+            var mapElement = $("#newListingMap")[0];
+            var newListingMap;
+            var marker;
+            var geolocation;
+            //Set autocomplete component
+            var autocomplete = new google.maps.places.Autocomplete(searchElement, {types: ['geocode']});
+            //Bias the autocomplete object to the user's geographical location,
+            // as supplied by the browser's 'navigator.geolocation' object.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    window.geolocation = geolocation;
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete.setBounds(circle.getBounds());
+                    //set map component
+                    newListingMap = new google.maps.Map(mapElement, {
+                        center: geolocation,
+                        zoom: 15
+                    });
+                    marker = new google.maps.Marker({
+                        position: geolocation,
+                        animation: google.maps.Animation.DROP,
+                        map: newListingMap
+                    });
+                });
+            }else{
+                //set map component when no location obtained from browser
+                newListingMap = new google.maps.Map(mapElement, {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 10
+                });
+                marker = new google.maps.Marker({
+                    position: geolocation,
+                    animation: google.maps.Animation.DROP,
+                    map: newListingMap
+                });
+            }
+            autocomplete.addListener('place_changed', onPlaceChanged);
+            // When the user selects a city, get the place details for the city and
+            // zoom the map in on the city as well as drop a marker.
+            function onPlaceChanged(searchClicked) {
+                //Erase any existing marker
+                if(marker){
+                    marker.setMap(null);
+                }
+                var place = autocomplete.getPlace();
+                if (place.geometry) {
+                    var selectedLocation = place.geometry.location;
+                    //update global variable geolocation
+                    geolocation=selectedLocation;
+                    window.geolocation = {lat: geolocation.lat(), lng: geolocation.lng()};
+                    newListingMap.panTo(selectedLocation);
+                    marker = new google.maps.Marker({
+                        position: selectedLocation,
+                        animation: google.maps.Animation.DROP,
+                        map: newListingMap
+                    });
+                    newListingMap.setZoom(15);
+                }else{
+                    searchElement.placeholder = 'Enter an address...';
+                }
+            }
+//            $("#newListingSearch").on("focus", geolocate);
+//            // Bias the autocomplete object to the user's geographical location,
+//            // as supplied by the browser's 'navigator.geolocation' object.
+//            function geolocate() {
+//                if (navigator.geolocation) {
+//                    navigator.geolocation.getCurrentPosition(function(position) {
+//                        var geolocation = {
+//                            lat: position.coords.latitude,
+//                            lng: position.coords.longitude
+//                        };
+//                        var circle = new google.maps.Circle({
+//                            center: geolocation,
+//                            radius: position.coords.accuracy
+//                        });
+//                        autocomplete.setBounds(circle.getBounds());
+//                    });
+//                }
+//            }
+        });
+    });
+</script>

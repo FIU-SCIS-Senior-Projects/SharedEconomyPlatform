@@ -1,0 +1,66 @@
+//Offers Modal
+@import "fontstack";
+
+$primary-color: #4ECDC4;
+$dark-background: #556270;
+$light-background: #dde2e3;
+
+#modalHeader {
+
+  h2{
+    color: $primary-color;
+    font-family: $cursive;
+    font-size: 3.9em;
+  }
+  background-color: $dark-background;
+  border-bottom: 1px solid #556270 !important;
+  text-align: center !important;
+
+}
+
+#modalFooter {
+  border-top: 1px solid #556270 !important;
+  background-color: $dark-background;
+}
+
+.options {
+  height: 500px;
+
+  #acceptedAndPending, #inboxAndSent {
+    height: inherit;
+    li{
+      height: inherit;
+    }
+    .uk-grid{
+      height: 470px;
+    }
+
+  }
+
+  .leftOfferPane{
+    overflow-y: scroll;
+  }
+}
+
+#inboxList, #sentList {
+  width: 100% !important;
+}
+
+#messagesModal {
+  .uk-grid {
+    margin: 0 !important;
+  }
+  .leftOfferPane {
+    padding: 0 !important;
+  }
+  .uk-modal-dialog {
+    padding: 0 !important;
+  }
+  .uk-modal-header, .uk-modal-footer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .uk-form {
+    margin: 15px;
+  }
+}

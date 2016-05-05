@@ -1,0 +1,238 @@
+{{>google_maps_loader}}
+{{>uikit_components/sticky}}
+<div id="searchPageContainer">
+    <div class="uk-position-cover uk-flex uk-flex-center uk-flex-top uk-margin-large-top" id="searchHeader">
+        <article class="uk-article">
+            <h1 class="uk-article-title">Looking for something more specific?</h1>
+            <p class="uk-article-lead uk-text-center">Refine your search below.</p>
+        </article>
+
+    </div>
+    <div class="uk-container uk-container-center">
+        <div data-uk-sticky class="uk-margin-large-bottom">
+            <nav class="uk-navbar">
+
+                <div class="uk-navbar-content navbarContent" id="filtersLabel">Filters:</div>
+
+                <ul class="uk-navbar-nav">
+                    <li class="uk-parent uk-active" data-uk-dropdown="">
+                        <a type="button" class="uk-text-middle"><i class="uk-icon-dollar"></i> Price</a>
+                        <div class="uk-dropdown uk-dropdown-navbar">
+                            <form class="uk-form uk-form-stacked">
+                                <div class="uk-form-controls">
+                                    <input type="radio" id="perHourRadio" name="radio" checked>
+                                    <label for="perHourRadio" >Hour</label>
+                                    <input type="radio" id="perDayRadio" name="radio">
+                                    <label for="perDayRadio">Day</label>
+                                    <input type="radio" id="perMonthRadio" name="radio">
+                                    <label for="perMonthRadio">Month</label>
+                                    <!--<label class="uk-margin-small-top"><input type="radio"> Hour</label>-->
+                                    <!--<label class="uk-margin-small-top"><input type="radio"> Day</label>-->
+                                    <!--<label class="uk-margin-small-top"><input type="radio"> Month</label>-->
+                                </div>
+                            </form>
+
+                            <form class="uk-form">
+                                <div class="uk-form-icon">
+                                    <i class="uk-icon-dollar"></i>
+                                    <input type="text" id="minPriceInput" placeholder="Min" value="{{minPrice}}">
+                                </div>
+                                <div class="uk-form-icon">
+                                    <i class="uk-icon-dollar"></i>
+                                    <input type="text" id="maxPriceInput" placeholder="Max" value="{{maxPrice}}">
+                                </div>
+                            </form>
+                            <div>
+
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="uk-parent uk-active" data-uk-dropdown="">
+                        <a type="button"><i class="uk-icon-th"></i> Features</a>
+
+                        <div class="uk-dropdown uk-dropdown-navbar">
+                            <ul class="uk-nav uk-nav-side" id="featureSelect">
+                                <li class="uk-nav-header">Select desired features</li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="featureItem {{#if features.Wifi}}uk-active{{/if}}" data-value="wifi">
+                                    <a>Wifi<i
+                                            class="uk-icon-check uk-align-right {{#unless features.Wifi}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.FoodCourt}}uk-active{{/if}}"
+                                    data-value="foodcourt">
+                                    <a>Food Court<i
+                                            class="uk-icon-check uk-align-right {{#unless features.FoodCourt}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.WheelChair}}uk-active{{/if}}"
+                                    data-value="wheelchair">
+                                    <a>Wheelchair Access<i
+                                            class="uk-icon-check uk-align-right {{#unless features.WheelChair}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.MeetingRoom}}uk-active{{/if}}"
+                                    data-value="meetingroom">
+                                    <a>Meeting Room<i
+                                            class="uk-icon-check uk-align-right {{#unless features.MeetingRoom}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.Kitchen}}uk-active{{/if}}" data-value="kitchen">
+                                    <a>Kitchen<i
+                                            class="uk-icon-check uk-align-right {{#unless features.Kitchen}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.Mail}}uk-active{{/if}}" data-value="mailservice">
+                                    <a>Mail Service<i
+                                            class="uk-icon-check uk-align-right {{#unless features.Mail}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.Coffee}}uk-active{{/if}}"
+                                    data-value="coffeemachine">
+                                    <a>Coffee Machine<i
+                                            class="uk-icon-check uk-align-right {{#unless features.Coffee}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                                <li class="featureItem {{#if features.Parking}}uk-active{{/if}}" data-value="parking">
+                                    <a>Parking Available<i
+                                            class="uk-icon-check uk-align-right {{#unless features.Parking}}uk-hidden{{/unless}}"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                </ul>
+
+                <div class="uk-navbar-content">
+                    <div class="uk-form-icon uk-align-right">
+                        <i class="uk-icon-search"></i>
+                        <input class="uk-form-large uk-width-1-2" type="text" id="listingSearch"
+                               placeholder="Search location" autocomplete="off">
+                        <select class="uk-form-large" id="searchDistanceSelect">
+                            <option value="5">5 mi.</option>
+                            <option value="10">10 mi.</option>
+                            <option value="25">25 mi.</option>
+                            <option value="50">50 mi.</option>
+                        </select>
+                        <button type="button" class="uk-button uk-button-primary uk-button-large" id="searchSubmit">
+                            Filter
+                        </button>
+                    </div>
+                    </form>
+                    <form action="/search" method="post" class="uk-form uk-text-center uk-hidden"
+                          id="searchSubmissionForm">
+                        <div class="uk-form-icon uk-width-1-1">
+                            <input id="wifiInput" name="featureWifi" value="{{features.Wifi}}">
+                            <input id="foodcourtInput" name="featureFoodCourt" value="{{features.FoodCourt}}">
+                            <input id="wheelchairInput" name="featureWheelChair" value="{{features.WheelChair}}">
+                            <input id="meetingroomInput" name="featureMeetingRoom" value="{{features.MeetingRoom}}">
+                            <input id="kitchenInput" name="featureKitchen" value="{{features.Kitchen}}">
+                            <input id="mailserviceInput" name="featureMail" value="{{features.Mail}}">
+                            <input id="coffeemachineInput" name="featureCoffee" value="{{features.Coffee}}">
+                            <input id="parkingInput" name="featureParking" value="{{features.Parking}}">
+                            <input id="minInput" name="minPrice" value="{{minPrice}}">
+                            <input id="maxInput" name="maxPrice" value="{{maxPrice}}">
+                            <input id="priceTypeInput" name="priceType" value="perHour">
+                            <input id="lngInput" name="lng">
+                            <input id="latInput" name="lat">
+                            <input id="distanceInput"
+                                   name="distance" value={{#if distance}}{{distance}}{{else}}5{{/if}}>
+                            <!--<button type="submit" id="searchSubmit"></button>-->
+                        </div>
+                    </form>
+                </div>
+
+
+            </nav>
+        </div>
+        <div id="resultsContainer">
+            {{>search/result_row results}}
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //TODO: add features on page load
+
+    $(".featureItem").click(function () {
+        var item = $(this);
+        var icon = $(item.find("i")[0]);
+        var id = "#" + item.attr("data-value") + "Input";
+
+        //remove item from filter
+        if (item.hasClass("uk-active")) {
+            item.removeClass("uk-active");
+            icon.addClass("uk-hidden");
+            $(id).val("");
+        } else {//add item to filter
+            item.addClass("uk-active");
+            icon.removeClass("uk-hidden");
+            $(id).val("true");
+        }
+    });
+
+
+    $("#searchDistanceSelect").on("change", function () {
+        $("#distanceInput").val(this.value);
+    });
+
+    $("#searchSubmit").click(function () {
+        var min = $("#minPriceInput").val(),
+                max = $("#maxPriceInput").val(),
+                priceType = null;
+
+        console.log(min, max);
+
+
+        if($('#perHourRadio').is(':checked'))
+            priceType = "perHour";
+        if($('#perDayRadio').is(':checked'))
+            priceType = "perDay";
+        if($('#perMonthRadio').is(':checked'))
+            priceType = "perMonth";
+
+//        if (min && max) {
+            $("#minInput").val(min);
+            $("#maxInput").val(max);
+//        }
+        if(priceType)
+            $("#priceTypeInput").val(priceType);
+
+        $("#searchSubmissionForm").trigger("submit");
+    });
+
+    GoogleMapsLoader.load(function (google) {
+        var searchElement = $("#listingSearch")[0];
+        var geolocation;
+        //Set autocomplete component
+        var autocomplete = new google.maps.places.Autocomplete(searchElement, {types: ['geocode']});
+        //Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                window.geolocation = geolocation;
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+        autocomplete.addListener('place_changed', onPlaceChanged);
+        // When the user selects a city, get the place details for the city and
+        // zoom the map in on the city as well as drop a marker.
+        function onPlaceChanged(searchClicked) {
+            var place = autocomplete.getPlace();
+            if (place.geometry) {
+                var selectedLocation = place.geometry.location;
+                //update global variable geolocation
+                geolocation = selectedLocation;
+                $("#lngInput").val(geolocation.lng());
+                $("#latInput").val(geolocation.lat());
+            } else {
+                searchElement.placeholder = 'Search location';
+            }
+        }
+    });
+</script>

@@ -1,0 +1,615 @@
+{{>uikit_components/upload}}
+{{>uikit_components/placeholder}}
+{{>uikit_components/notify}}
+<div id="profileContainer">
+    <div class="uk-grid uk-margin-remove" id="profileGrid">
+        <div class="uk-width-1-1 uk-width-medium-1-3" id="profileLeftContainer">
+            {{#if user}}<p><a data-uk-modal="{target:'#messagesModal'}" class="icons uk-icon-envelope-o"
+                              id="messageUser"><span class="uk-text-center"><strong>
+                Message {{firstName}}</strong></span></a>{{/if}}</p>
+            {{#profileOwner}}<a class="icons uk-icon-edit uk-align-right" id="editIconName"></a>{{/profileOwner}}
+            <input class="uk-form-large uk-width-1-1 uk-hidden" type="text" id="nameInput" value="{{name}}">
+            <h1 id="nameHeader">{{name}}</h1>
+            {{#profileOwner}}<a class="icons uk-icon-edit uk-align-right" id="editIconBio"></a>{{/profileOwner}}
+            <p class="uk-text-break" id="bioText">{{#if bio}}{{bio}}{{else}}Write something interesting about yourself
+                here...{{/if}}</p>
+            <textarea class="uk-width-1-1 uk-hidden" id="bioInput" cols="3" rows="3">{{#if bio}}{{bio}}{{else}}Write something interesting about yourself here...{{/if}}</textarea>
+            {{#profileOwner}}<a class="uk-form-file icons uk-icon-picture-o uk-align-right"
+                                id="editIconProfilePic"><input id="profilePicUploadSelect"
+                                                               type="file"></a>{{/profileOwner}}
+            <img id="profilePic" class="uk-align-center uk-border-circle uk-animation-scale-up"
+                 {{#if pic}}src="data:image;base64,{{pic}}" {{else}}src="/images/avatar.png"{{/if}}>
+            {{#profileOwner}}
+                <button class="uk-button uk-button-warning uk-align-center" id="settingsButton"
+                        data-uk-modal="{target:'#settingsModal'}" type="button"><i class="uk-icon-cogs"></i> Account
+                    Settings
+                </button>{{/profileOwner}}
+            <div id="changePasswordModal" class="uk-modal">
+                <div class="uk-modal-dialog profileModals">
+                    <a class="uk-modal-close uk-close" id="modalClose"></a>
+                    <div class="uk-modal-header modalHeader">Change Password</div>
+                    <form class="uk-form uk-form-horizontal">
+                        <div class="uk-form-row">
+                            <label class="uk-form-label" for="">Password</label>
+                            <input class="uk-form-large uk-width-1-1" type="password" id="password1">
+                            <label class="uk-form-label" for="">Confirm Password</label>
+                            <input class="uk-form-large uk-width-1-1" type="password" id="password2">
+                        </div>
+                    </form>
+                    <div class="uk-modal-footer modalFooter uk-text-right">
+                        <button class="uk-button uk-button-primary" id="changePassButton">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div id="settingsModal" class="uk-modal">
+                <div class="uk-modal-dialog profileModals" id="settings">
+                    <a class="uk-modal-close uk-close" id="modalCloseSettings"></a>
+                    <div class="uk-modal-header modalHeader">Settings</div>
+                    <button class="uk-button uk-button-success uk-align-center settingsButtons"
+                            data-uk-modal="{target:'#changePasswordModal'}" type="button" id="changePasswordButton"><i
+                            class="uk-icon-lock"></i> Change Password
+                    </button>
+                    <button class="uk-button uk-button-danger uk-align-center settingsButtons" id="deleteAccountButton"
+                            type="button"><i class="uk-icon-warning"></i> Delete Account
+                    </button>
+                    <button class="uk-button uk-button-primary uk-align-center settingsButtons"
+                            data-uk-modal="{target:'#creditCardModal'}" id="creditCardButton" type="button"><i
+                            class="uk-icon-credit-card-alt"></i> Credit Card
+                    </button>
+                    <div class="uk-modal-footer modalFooter"></div>
+                </div>
+            </div>
+            <div id="creditCardModal" class="uk-modal">
+                <div class="uk-modal-dialog profileModals">
+                    <a class="uk-modal-close uk-close" id="modalCloseCreditCard"></a>
+                    <div class="uk-modal-header modalHeader">Credit Card</div>
+                    <div class="uk-alert uk-alert-danger uk-hidden uk-text-center" role="alert" id="cardError"></div>
+                    {{#if lastFour}}
+                        <h3 class="uk-text-center">You are currently using a {{type}} card ending in {{lastFour}}.</h3>
+                        <hr>
+                        <h4 class="uk-text-center"><input type="checkbox" id="newInfoCheckBox"> Update my card
+                            information</h4>
+                    {{/if}}
+                    <div id="creditCardDiv" {{#if lastFour}}class="uk-hidden"{{/if}}>
+                        <div class="uk-form-icon uk-margin-small-bottom">
+                            <i class="uk-icon-user formIcon"></i><input value=""
+                                                                        style="width: 300px; height: 30px"
+                                                                        class="uk-form-large uk-text-center cardField"
+                                                                        type="text"
+                                                                        id="nameOnCard" placeholder="Name on Card">
+                        </div>
+                        <div class="uk-form-icon uk-margin-small-bottom">
+                            <i class="uk-icon-credit-card formIcon"></i><input value=""
+                                                                               style="width: 300px; height: 30px"
+                                                                               class="uk-form-large uk-text-center cardField"
+                                                                               type="text" id="cardNumber"
+                                                                               placeholder="Card Number">
+                        </div>
+                        <div class="uk-form-icon uk-margin-small-bottom">
+                            <i class="uk-icon-calendar-o formIcon"></i><input style="width: 140px; height: 30px"
+                                                                              class="uk-form-large uk-text-center cardField"
+                                                                              maxlength="5" id="expDate"
+                                                                              placeholder="MM/YY">
+                        </div>
+                        <input style="width: 140px; height: 30px" type="number"
+                               class="cardField uk-form-large uk-text-center"
+                               id="CVC" placeholder="CVC">
+                    </div>
+                    <div class="uk-modal-footer modalFooter uk-text-right">
+                        <button class="uk-button uk-button-primary" id="updateCreditCardButton">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-1-1 uk-width-medium-2-3" id="profileRightContainer">
+            <div id="spacesDiv">
+                <h1>Listed Spaces</h1>
+                <div id="spacesImagesContainer">
+                    {{>uikit_components/slideset}}
+                    {{>uikit_components/lightbox}}
+                    <div class="uk-margin" data-uk-slideset="{default: 3}" style="">
+                        <div class="uk-slidenav-position uk-margin" id="slidesetContainer">
+                            <ul class="uk-slideset uk-grid uk-flex-center uk-grid-width-1-3">
+                                {{#each results}}
+                                    <li class="uk-padding-remove spaceImageListItem uk-align-center">
+                                        <div class="uk-thumbnail uk-overlay-hover resultItem"
+                                             data-uk-modal="{target:'#modal-1'}">
+                                            <figure class="uk-overlay uk-overlay-hover">
+                                                <a href="/viewspace/{{spaceId}}">
+                                                    <img class="uk-overlay-scale profileSpaceImage"
+                                                         src="data:image;base64,{{img}}" alt="">
+                                                </a>
+                                                <div id="ratingDiv">
+                                                    <p class="uk-margin-top uk-icon-star" id="profileStar"></p>
+                                                    <strong id="rating"> {{rating}}</strong>
+                                                    <span id="fraction"> / 5</span>
+                                                </div>
+                                                <figcaption
+                                                        class="uk-overlay-panel uk-overlay-background uk-overlay-bottom uk-ignore uk-text-center">
+                                                    <div>
+                                                        <h3>{{title}}</h3>
+                                                        <p class="uk-text-truncate">{{description}}</p>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                            <a href="#" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+                            <a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr id="hrSeparator">
+            <div id="infoDiv">
+                <h1>Information</h1>
+                <table class="uk-table uk-table-hover">
+                    <tbody>
+                    <tr>
+                        <th width="30%">Username:</th>
+                        <td width="20%" id="usernameText">{{username}}</td>
+                        <td width="20%" class="uk-hidden" id="usernameRow"><input
+                                class="uk-float-left uk-form-large uk-width-1-1" id="usernameInput" type="text"
+                                value="{{username}}"></td>
+                        <td width="50%">{{#profileOwner}}<a class="tableIcon uk-icon-edit uk-align-right"
+                                                            id="editIconUsername"></a>{{/profileOwner}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td id="emailText">{{email}}</td>
+                        <td class="uk-hidden" id="emailRow"><input class="uk-float-left uk-form-large uk-width-1-1"
+                                                                   id="emailInput" type="text" value="{{email}}"></td>
+                        <td>{{#profileOwner}}<a class="tableIcon icons uk-icon-edit uk-align-right"
+                                                id="editIconEmail"></a>{{/profileOwner}}</td>
+                    </tr>
+                    <tr>
+                        <th>Member Since:</th>
+                        <td>{{joined}}</td>
+                        <td><a class="tableIcon uk-hidden icons uk-icon-edit uk-align-right"></a></td>
+                    </tr>
+                    <button class="uk-hidden" id="username" value="{{username}}"></button>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{>dependencies/stripe}}
+<script type="text/javascript">
+
+
+    var oldVal;
+    var usernameExists = false;
+
+    function stripeResponseHandler(status, response) {
+        var token = response.id;
+
+        $.ajax({
+            type: "POST",
+            url: "/profile/saveCard",
+            data: {stripeToken: token, last4: response.card.last4, cardType: response.card.brand},
+        }).success(function (response, status) {
+
+            UIkit.notify("<i class='uk-icon-check'></i> Your card has been saved!", {status: 'success'});
+            $("#modalCloseCreditCard").trigger("click");
+
+
+        }).fail(function (err, status) {
+            console.log("failure");
+            console.log(err);
+
+        });
+    }
+
+    function isEmpty(inputId) {
+        if ($("#" + inputId).val() == "" || $("#" + inputId).val() == undefined) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function editField(header, field, input, inputTable, table, callback) {
+
+        if (table == 1 && $("#" + field).hasClass("uk-icon-edit")) {
+            oldVal = $("#" + inputTable).val();
+
+            console.log(header);
+
+            $("#" + header).addClass("uk-hidden");
+            $("#" + input).removeClass("uk-hidden");
+            $("#" + field).removeClass("uk-icon-edit");
+            $("#" + field).addClass("uk-icon-save");
+            $("#" + field).addClass("saveIconTable");
+            $("#" + field).removeClass("icons");
+            console.log("here");
+        }
+        else if ($("#" + field).hasClass("uk-icon-edit")) {
+            oldVal = $("#" + input).val();
+
+            $("#" + header).addClass("uk-hidden");
+            $("#" + input).removeClass("uk-hidden");
+            $("#" + field).removeClass("uk-icon-edit");
+            $("#" + field).addClass("uk-icon-save");
+            $("#" + field).addClass("saveIcon");
+            $("#" + field).removeClass("icons");
+            console.log("here2");
+        }
+        else if ($("#" + field).hasClass("uk-icon-save") && table == 1) {
+
+            var newVal = $("#" + inputTable).val();
+
+            $("#" + input).addClass("uk-hidden");
+            $("#" + header).removeClass("uk-hidden");
+
+            $("#" + header).html(newVal);
+
+            $("#" + field).addClass("uk-icon-edit");
+            $("#" + field).removeClass("uk-icon-save");
+            $("#" + field).removeClass("saveIconTable");
+            $("#" + field).addClass("tableIcon");
+            console.log("here3");
+
+
+            if (oldVal != newVal) //only do this if the field was edited
+                callback();
+        }
+        else {
+            $("#" + input).addClass("uk-hidden");
+            $("#" + header).removeClass("uk-hidden");
+
+            var newVal = $("#" + input).val();
+            console.log(newVal);
+            $("#" + header).html(newVal);
+
+            $("#" + field).addClass("uk-icon-edit");
+            $("#" + field).removeClass("uk-icon-save");
+            $("#" + field).removeClass("saveIcon");
+            $("#" + field).addClass("icons");
+
+            if (oldVal != newVal) //only do this if the field was edited
+                callback();
+
+            console.log("here4");
+        }
+
+    }
+
+    $("#editIconName").click(function () {
+
+        editField("nameHeader", "editIconName", "nameInput", null, null, function () {
+            $.ajax({
+                type: "POST",
+                url: "/profile",
+                data: {name: $("#nameInput").val()},
+            })
+        });
+
+    });
+
+    $("#editIconBio").click(function () {
+
+        editField("bioText", "editIconBio", "bioInput", null, null, function () {
+            $.ajax({
+                type: "POST",
+                url: "/profile",
+                data: {bio: $("#bioInput").val()},
+            })
+        });
+
+    });
+
+    $("#editIconUsername").click(function () {
+        var valid = true;
+
+
+        //first check if it is valid
+        if ($("#editIconUsername").hasClass("uk-icon-save")) {
+            var username = $("#usernameInput").val();
+
+            if (username == "" || (/\s/g.test(username)) || /[^a-zA-Z0-9]/.test(username)) {
+                UIkit.modal.alert("Sorry, username cannot be blank, have spaces, or contain special characters.");
+                valid = false;
+            }
+
+
+            if (valid && oldVal != username) {
+                //check if it exists
+                $.ajax({
+                    type: "POST",
+                    url: "/profile/check/username",
+                    data: {username: $("#usernameInput").val()},
+                }).success(function (response, status) {
+                    if (response.message) {
+                        UIkit.modal.alert(response.message);
+                    }
+                    else { // we can update it now
+                        editField("usernameText", "editIconUsername", "usernameRow", "usernameInput", 1, function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "/profile",
+                                data: {username: $("#usernameInput").val()},
+                            })
+                        });
+                    }
+
+                }).fail(function (err, status) {
+                    console.log("failure");
+                    console.log(err);
+
+                });
+            }
+            else {
+
+                if (valid) {
+                    editField("usernameText", "editIconUsername", "usernameRow", "usernameInput", 1);
+                }
+
+            }
+
+        }
+        else {
+            oldVal = $("#usernameInput").val();
+            editField("usernameText", "editIconUsername", "usernameRow", "usernameInput", 1);
+        }
+
+
+    });
+
+    $("#editIconEmail").click(function () {
+        var valid = true;
+
+
+        //first check if it is valid
+        if ($("#editIconEmail").hasClass("uk-icon-save")) {
+            var email = $("#emailInput").val();
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+            if (email == "" || (/\s/g.test(email)) || !re.test(email)) {
+                UIkit.modal.alert("Sorry, the email is not valid.");
+                valid = false;
+            }
+
+
+            if (valid && oldVal != email) {
+                //check if it exists
+                $.ajax({
+                    type: "POST",
+                    url: "/profile/check/email",
+                    data: {email: $("#emailInput").val()},
+                }).success(function (response, status) {
+                    if (response.message) {
+                        UIkit.modal.alert(response.message);
+                    }
+                    else { // we can update it now
+                        editField("emailText", "editIconEmail", "emailRow", "emailInput", 1, function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "/profile",
+                                data: {email: $("#emailInput").val()},
+                            })
+                        });
+                    }
+
+                }).fail(function (err, status) {
+                    console.log("failure");
+                    console.log(err);
+
+                });
+            }
+            else {
+
+                if (valid) {
+                    editField("emailText", "editIconEmail", "emailRow", "emailInput", 1);
+                }
+
+            }
+
+        }
+        else {
+            oldVal = $("#emailInput").val();
+            editField("emailText", "editIconEmail", "emailRow", "emailInput", 1);
+        }
+
+
+    });
+
+    $("#changePassButton").click(function () {
+
+        var pass1 = $("#password1").val();
+        var pass2 = $("#password2").val();
+
+        if (pass1 != pass2) {
+            UIkit.modal.alert("Your passwords do not match.");
+        }
+        else if (pass1.length < 6 || pass2.length < 6) {
+            UIkit.modal.alert("Password must be at least 6 characters.");
+        }
+        else if (pass1 == "" || pass2 == "" || /[^a-zA-Z0-9]/.test(pass1) || /[^a-zA-Z0-9]/.test(pass2)) {
+            UIkit.modal.alert("Sorry, password cannot be blank or contain whitespace");
+        }
+        else { //do ajax request to change the password
+
+            $.ajax({
+                type: "POST",
+                url: "/profile",
+                data: {password: pass1},
+            }).success(function (response, status) {
+                if (response.message) {
+                    UIkit.notify("<i class='uk-icon-check'></i> Your password has been changed.", {status: 'success'});
+                    $("#modalClose").trigger("click");
+                }
+
+
+            }).fail(function (err, status) {
+                console.log("failure");
+                console.log(err);
+
+            });
+
+        }
+
+    });
+
+    $("#deleteAccountButton").click(function () {
+
+        UIkit.modal.confirm("Are you sure? Clicking OK will delete your account forever. All spaces you've listed or" +
+                " offers you've made will be gone.", function () {
+            $.ajax({
+                type: "POST",
+                url: "/profile",
+                data: {del: 1},
+            }).success(function (response, status) {
+                if (response.message) {
+                    $("#modalCloseSettings").trigger("click");
+                    UIkit.notify("<i class='uk-icon-check'></i> Your account has been deleted.", {status: 'success'});
+                    document.location.href = "/";
+                }
+
+
+            }).fail(function (err, status) {
+                console.log("failure");
+                console.log(err);
+
+            });
+
+        });
+    });
+
+
+    $(".icons").hover(function () {
+        $(this).css("color", "white");
+    }, function () {
+        $(this).css("color", "#4ECDC4");
+    });
+
+    $(".tableIcon").hover(function () {
+        $(this).css("color", "#556270");
+    }, function () {
+        $(this).css("color", "#4ECDC4");
+    });
+
+    $(".removeIcon").click(function () {
+        var spaceId = $(this).parent().attr("id");
+        $("#" + spaceId).remove();
+        var slideset = UIkit.slideset("#slidesetContainer", {small: 3, medium: 3, large: 3, xlarge: 3});
+    });
+
+    $(function () {
+
+        var settings = {
+            action: "/profile",
+
+            param: "photo",
+
+            allow: '*.(jpg|jpeg|png)', // allow only images
+
+            filelimit: 1,
+
+            beforeAll: function (file) {
+
+                var theFile = file[0];
+                var img = document.createElement("img");
+                img.src = window.URL.createObjectURL(theFile);
+                $("#profilePic").attr("src", img.src);
+            }
+
+        };
+
+        UIkit.uploadSelect($("#profilePicUploadSelect"), settings);
+    });
+
+
+    $("#updateCreditCardButton").click(function () {
+
+        var error = false;
+
+        $(".cardField").each(function (i, field) {
+            if (isEmpty(this.id)) {
+                $("#" + this.id).addClass("uk-form-danger");
+                error = true;
+            } else {
+                $("#" + this.id).removeClass("uk-form-danger");
+            }
+        });
+
+
+        if (!error) {
+            // Get the values:
+            var ccNum = $('#cardNumber').val(), cvcNum = $('#CVC').val();
+            var expDate = $('#expDate').val();
+
+            //extract the month and year
+            var expMonth = expDate.substring(0, 2);
+            var expYear = expDate.substring(3, 5);
+
+            // Validate the number:
+            if (!Stripe.card.validateCardNumber(ccNum)) {
+                error = true;
+                $('#cardError').html("The credit card number appears to be invalid.");
+                $("#cardNumber").addClass("uk-form-danger");
+            }
+            else {
+                $("#cardNumber").removeClass("uk-form-danger");
+            }
+            // Validate the CVC:
+            if (!Stripe.card.validateCVC(cvcNum)) {
+                error = true;
+                $('#cardError').html('The CVC number appears to be invalid.');
+                $("#CVC").addClass("uk-form-danger");
+            }
+            else {
+                $("#CVC").removeClass("uk-form-danger");
+            }
+
+            // Validate the expiration:
+            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                error = true;
+                $('#cardError').html('The expiration date appears to be invalid.');
+                $("#expDate").addClass("uk-form-danger");
+            }
+            else {
+                $("#expDate").removeClass("uk-form-danger");
+            }
+
+            if (error) {
+                $("#cardError").removeClass("uk-hidden");
+            }
+            else { //save the details
+
+                // Get the Stripe token:
+                Stripe.card.createToken({
+                    number: ccNum,
+                    cvc: cvcNum,
+                    exp_month: expMonth,
+                    exp_year: expYear
+                }, stripeResponseHandler);
+
+            }
+
+        }
+
+    });
+
+    $('#newInfoCheckBox').change(function () {
+
+        if ($('#creditCardDiv').hasClass("uk-hidden")) {
+            console.log("has class");
+            $("#creditCardDiv").removeClass("uk-hidden");
+        }
+        else {
+            $("#creditCardDiv").addClass("uk-hidden");
+        }
+    });
+
+    $("#messageUser").click(function () {
+        $("#composeNewTab").trigger("click");
+        $("#newMessageRecipient").val($("#username").val());
+    });
+
+
+</script>

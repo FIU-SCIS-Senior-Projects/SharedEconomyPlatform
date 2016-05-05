@@ -1,0 +1,30 @@
+<div class="uk-height-viewport uk-text-center uk-vertical-align loginRegisterWrapper">
+
+    <div id="registrationContainer" class="uk-vertical-align-middle">
+
+        <h1 class="loginRegisterHeader">Sign-in</h1>
+
+        <div class="uk-container loginRegisterFormContainer">
+
+            <form class="uk-form" action="/login" method="post" role="form" id="loginForm">
+                <div class="uk-form-row uk-margin-large-top">
+                    <!--<label class="uk-form-label" for="form-input-1"></label>-->
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center" type="text" name="loginUsername" id="loginUsername" placeholder="Username" value="{{loginUsername}}">
+                    </div>
+                    {{>error_text_alert usernameError}}
+                </div>
+                <div class="uk-form-row uk-margin-bottom">
+                    <!--<label class="uk-form-label" for="form-input-1"></label>-->
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center" type="password" name="loginPassword" id="loginPassword" placeholder="Password" value="{{loginPassword}}">
+                    </div>
+                    {{>error_text_alert passwordError}}
+                </div>
+                <a class="uk-margin-top" href="/resetpassword">Forgot password?</a>
+                <button class="uk-button uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-top uk-margin-large-bottom" type="submit"  data-uk-button>Login</button>
+            </form>
+
+        </div>
+    </div>
+</div>

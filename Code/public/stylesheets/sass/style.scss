@@ -1,0 +1,117 @@
+@import "home";
+@import "compass";
+@import "modals";
+@import "newlisting";
+@import "fontstack";
+@import "viewspace";
+@import "review";
+@import "search";
+@import "offer";
+@import "profile";
+@import "bankInfo";
+
+$primary-color: #4ECDC4;
+$dark-background: #556270;
+$light-background: #dde2e3;
+
+html{
+  font-family: $font-stack;
+}
+
+/*Login and Register pages*/
+.loginRegisterWrapper{
+  width: 100% !important;
+  background-color: $dark-background;
+}
+.loginRegisterHeader{
+  font-family: $cursive;
+  font-size: 100px !important;
+  color: $primary-color;
+}
+.loginRegisterFormContainer{
+  background-color: $light-background;
+}
+//.loginRegisterFormContainer{
+//  input{
+//    border: #4ECDC4 solid 1px !important;
+//  }
+//}
+
+//Verification page
+#verifyMessageContainer{
+  padding: 75px 10px 75px 10px;
+  color: white;
+  font-size: large;
+  border: $light-background solid 2px;
+}
+
+
+//Menu Partial
+#menuShowBtn {
+  text-shadow: none !important;
+  position: fixed;
+  left: 0;
+  top: 100px;
+  /*height: 50px;*/
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 0 5px #888 !important;
+  //background-color: white;
+  background-color: rgba(0, 0, 0, .5);
+  //background-color: rgba(221, 226, 227, .1);
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  font-family: $cursive !important;
+  font-size: 2em;
+  padding: 5px;
+  z-index: 1;
+}
+#menuHideBtn{
+  position: absolute;
+  left: 0 !important;
+  top: 0 !important;
+  left: -55px;
+  top: 30px;
+  height: inherit;
+  box-shadow: none;
+  border-radius:0;
+  //border-right: solid 1px #4ECDC4;
+  //border-bottom: solid 1px #4ECDC4;
+  border: none;
+  //background-color: rgba(221, 226, 227, .7);
+  background-color: white;
+  z-index: 1;
+
+}
+#menuHideBtn:hover{
+  background-color: $primary-color;
+  color: white;
+}
+#menu{
+  text-align: center;
+  font-size: 1.2em;
+  position: fixed;
+  top: 100px;
+  left: 15px;
+  width: 150px;
+  z-index: 1;
+  box-shadow: 0 0 5px #888 !important;
+  //background-color: rgba(221, 226, 227, .7);
+  background-color: white;
+
+  //padding: 0 !important;
+  //i{
+  //  margin-right: 4px !important;
+  //  font-size: 1.2em;
+  //}
+}
+
+//#menuTopBar{
+//  padding: 10px !important;
+//}
+#menuTitle{
+  padding-top: 7px;
+  font-family: $cursive;
+  font-size: 2em;
+  text-align: center;
+}

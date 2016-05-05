@@ -1,0 +1,241 @@
+<div class="uk-text-center loginRegisterWrapper" id="bankInfoWrapper">
+    <div id="bankInfoContainer" class="uk-vertical-align-middle">
+        <article class="uk-article">
+            <h1 class="uk-article-title">We've detected that you do not have a stripe account set up with us yet.</h1>
+            <p class="uk-article-lead uk-text-center">Save your bank account details before listing a space below.</p>
+        </article>
+        <div class="uk-container loginRegisterFormContainer uk-align-center" id="bankInfoDiv">
+            <div id="errorDiv" class="uk-alert-danger uk-text-center uk-align-center uk-hidden"></div>
+            <form class="uk-form">
+                <div class="uk-form-row uk-margin-large-top">
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center infoField" id="address"
+                               placeholder="Street Address">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center infoField" id="city"
+                               type="text" placeholder="City">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input style="width: 150px;" class="uk-form-large uk-text-center infoField" id="zipCode"
+                               type="number" placeholder="Zip Code">
+                        <select class="uk-form-large infoField" style="width: 150px" ; id="state">
+                            <option value="State">State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center infoField" id="dob"
+                               placeholder="DD/MM/YYYY">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center infoField" type="text"
+                               maxlength="4" min="4" id="ssn" placeholder="Last 4 SSN">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center infoField" type="text"
+                               id="routingNum" placeholder="Routing Number">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input style="width: 300px;" class="uk-form-large uk-text-center infoField" type="text"
+                               id="accountNum" placeholder="Account Number">
+                    </div>
+                </div>
+                <button class="uk-button uk-button uk-button-large uk-width-1-1 uk-button-primary uk-margin-large-top"
+                        type="button" id="submitButton" val="{{firstName}}">Submit
+                </button>
+                <button class="uk-hidden" id="lastNameButton" value="{{lastName}}"></button>
+                <h5 class="uk-margin-top-remove uk-margin-large-bottom">By registering your account, you agree to the <a
+                        href="https://stripe.com/connect/account-terms">Stripe Connected Account Agreement.</a></h5>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{{>dependencies/stripe}}
+<script type="text/javascript">
+
+    function isEmpty(inputId) {
+        if ($("#" + inputId).val() == "" || $("#" + inputId).val() == undefined) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function validate(callback) {
+        var error = false;
+
+        var streetAddress = $("#address").val();
+        var city = $("#city").val();
+        var zipCode = $("#zipCode").val();
+
+        var s = document.getElementById("state");
+        var state = s.options[s.selectedIndex].value;
+        var accountNum = $("#accountNum").val();
+        var routingNum = $("#routingNum").val();
+
+
+        //console.log(state);
+
+        var dob = $("#dob").val();
+        var ssn = $("#ssn").val();
+
+        $(".infoField").each(function (i, field) {
+            if (isEmpty(this.id)) {
+                $("#" + this.id).addClass("uk-form-danger");
+                error = true;
+            } else {
+                $("#" + this.id).removeClass("uk-form-danger");
+            }
+        });
+
+        if (state == "State") {
+            $("#state").addClass("uk-form-danger");
+            error = true;
+        }
+
+        var pattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; //check for dd/mm/yyyy
+
+        if (!pattern.test(dob)) {
+            $("#dob").addClass("uk-form-danger");
+            error = true;
+        }
+
+        if (!Stripe.bankAccount.validateAccountNumber(accountNum, 'US')) {
+            $("#accountNum").addClass("uk-form-danger");
+            error = true;
+        }
+
+        if (!Stripe.bankAccount.validateRoutingNumber(routingNum, 'US')) {
+            $("#routingNum").addClass("uk-form-danger");
+            error = true;
+        }
+
+        if (!error) {
+
+            //console.log($("#submitButton").val() + " " + $("#lastNameButton").val());
+            Stripe.bankAccount.createToken({
+                country: 'US',
+                currency: 'usd',
+                routing_number: routingNum,
+                account_number: accountNum,
+                account_holder_name: $("#submitButton").val() + " " + $("#lastNameButton").val(),
+                account_holder_type: "individual"
+            }, function (status, response) {
+
+                if (response.error) {
+                    $('#errorDiv').html(response.error.message);
+                    $('#errorDiv').removeClass("uk-hidden");
+                }
+                else {
+                    var token = response.id;
+                    var ip = response.client_ip;
+
+                    var data = {
+                        address: streetAddress,
+                        city: city,
+                        zipCode: zipCode,
+                        state: state,
+                        dob: dob,
+                        ssn: ssn,
+                        timestamp: Math.floor(Date.now() / 1000),
+                        bankToken: token,
+                        ip: ip
+                    }
+                    callback(data);
+                }
+
+            });
+
+        }
+
+    }
+
+
+    $("#submitButton").click(function () {
+
+        validate(function (data) {
+            $.ajax({
+                type: "POST",
+                url: "/bankInfo/",
+                data: data
+            }).success(function (response, status) {
+                document.location.href = "/newlisting";
+
+
+            }).fail(function (err, status) {
+                console.log("failure");
+                console.log(err);
+
+            });
+
+        });
+
+
+    });
+
+</script>

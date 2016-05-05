@@ -1,0 +1,965 @@
+/* line 5, ../sass/_home.scss */
+#headerCover {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7) 11%, rgba(0, 0, 0, 0.7) 19%, transparent 69%, transparent 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.7) 11%, rgba(0, 0, 0, 0.7) 19%, transparent 69%, transparent 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 11%, rgba(0, 0, 0, 0.7) 19%, transparent 69%, transparent 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3000000', endColorstr='#00000000', GradientType=0);
+  /* IE6-9 */
+}
+
+/* line 12, ../sass/_home.scss */
+#homeHeader {
+  font-family: "Grand Hotel", cursive;
+  color: #4ECDC4;
+  font-size: 8em;
+  margin-top: 100px;
+  border: solid 1px #4ECDC4;
+  padding: 50px;
+}
+
+/* line 22, ../sass/_home.scss */
+#searchContainer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgba(221, 226, 227, 0.5);
+}
+
+/* line 8, ../sass/_modals.scss */
+#modalHeader {
+  background-color: #556270;
+  border-bottom: 1px solid #556270 !important;
+  text-align: center !important;
+}
+
+/* line 10, ../sass/_modals.scss */
+#modalHeader h2 {
+  color: #4ECDC4;
+  font-family: "Grand Hotel", cursive;
+  font-size: 3.9em;
+}
+
+/* line 21, ../sass/_modals.scss */
+#modalFooter {
+  border-top: 1px solid #556270 !important;
+  background-color: #556270;
+}
+
+/* line 26, ../sass/_modals.scss */
+.options {
+  height: 500px;
+}
+
+/* line 29, ../sass/_modals.scss */
+.options #acceptedAndPending, .options #inboxAndSent {
+  height: inherit;
+}
+
+/* line 31, ../sass/_modals.scss */
+.options #acceptedAndPending li, .options #inboxAndSent li {
+  height: inherit;
+}
+
+/* line 34, ../sass/_modals.scss */
+.options #acceptedAndPending .uk-grid, .options #inboxAndSent .uk-grid {
+  height: 470px;
+}
+
+/* line 40, ../sass/_modals.scss */
+.options .leftOfferPane {
+  overflow-y: scroll;
+}
+
+/* line 45, ../sass/_modals.scss */
+#inboxList, #sentList {
+  width: 100% !important;
+}
+
+/* line 50, ../sass/_modals.scss */
+#messagesModal .uk-grid {
+  margin: 0 !important;
+}
+
+/* line 53, ../sass/_modals.scss */
+#messagesModal .leftOfferPane {
+  padding: 0 !important;
+}
+
+/* line 56, ../sass/_modals.scss */
+#messagesModal .uk-modal-dialog {
+  padding: 0 !important;
+}
+
+/* line 59, ../sass/_modals.scss */
+#messagesModal .uk-modal-header, #messagesModal .uk-modal-footer {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* line 63, ../sass/_modals.scss */
+#messagesModal .uk-form {
+  margin: 15px;
+}
+
+/* line 2, ../sass/_panel_header.scss */
+.custom-panel-header {
+  font-family: "Grand Hotel", cursive;
+  font-size: 3em;
+}
+
+/* line 8, ../sass/_newlisting.scss */
+.boxShadowWrapper, #newListingMapContainer, #newListingSearchContainer, #newListingPhotosUploadContainer, #newListingPhotosPreviewContainer {
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 0 20px #999;
+}
+
+/* line 16, ../sass/_newlisting.scss */
+#topLevelContainer {
+  font-family: "Open Sans";
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 0 !important;
+}
+
+/* line 23, ../sass/_newlisting.scss */
+#newListingImageContainer {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0 !important;
+  top: 0;
+  bottom: 50%;
+}
+/* line 31, ../sass/_newlisting.scss */
+#newListingImageContainer .uk-button-group {
+  height: 40px;
+  position: relative;
+  top: -40px;
+  display: inline-block;
+  padding-bottom: 0 !important;
+}
+/* line 32, ../sass/_newlisting.scss */
+#newListingImageContainer .uk-button-group .left {
+  border-bottom-left-radius: 0;
+}
+/* line 35, ../sass/_newlisting.scss */
+#newListingImageContainer .uk-button-group .right {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+/* line 45, ../sass/_newlisting.scss */
+#newListingImageContainer #newListingDoneButton {
+  position: relative;
+  top: -40px;
+  left: -4px;
+  display: inline-block;
+  padding-bottom: 0 !important;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+/* line 55, ../sass/_newlisting.scss */
+#newListingImageContainer button {
+  height: 41px;
+}
+/* line 58, ../sass/_newlisting.scss */
+#newListingImageContainer img {
+  width: 100%;
+  max-width: 100%;
+  height: 50vh;
+}
+
+/* line 64, ../sass/_newlisting.scss */
+#newListingBottomGrid {
+  position: absolute;
+  top: 50%;
+  width: 100% !important;
+}
+
+/* line 72, ../sass/_newlisting.scss */
+#newListingLeftContainer {
+  background-color: #556270;
+  padding: 12% 5% 5% 5%;
+}
+/* line 75, ../sass/_newlisting.scss */
+#newListingLeftContainer h1 {
+  color: #4ECDC4;
+  font-family: "Grand Hotel", cursive;
+  font-size: 5em;
+  text-align: center;
+}
+/* line 81, ../sass/_newlisting.scss */
+#newListingLeftContainer p {
+  color: white;
+  font-size: 1.5em;
+}
+
+/* line 86, ../sass/_newlisting.scss */
+#newListingRightContainer {
+  background-color: white;
+  overflow: scroll;
+  padding: 30px;
+}
+/* line 93, ../sass/_newlisting.scss */
+#newListingRightContainer #featuresTable button {
+  text-align: center;
+  width: 60px;
+}
+/* line 99, ../sass/_newlisting.scss */
+#newListingRightContainer #locationLi {
+  padding: 5%;
+}
+
+/* line 108, ../sass/_newlisting.scss */
+#newListingMapContainer {
+  height: 500px;
+}
+
+/* line 1, ../sass/_viewspace.scss */
+#viewSpaceMapContainer {
+  width: 100%;
+}
+
+/* line 6, ../sass/_viewspace.scss */
+#viewSpaceMapContainer {
+  height: 709px;
+}
+
+/* line 10, ../sass/_viewspace.scss */
+#viewSpaceLeftContainer {
+  background-color: #556270;
+}
+
+/* line 15, ../sass/_viewspace.scss */
+.viewSpaceTitles {
+  color: #556270;
+  font-weight: bold;
+}
+
+/* line 21, ../sass/_viewspace.scss */
+#viewSpaceAddressDiv {
+  position: absolute;
+  bottom: 0;
+  color: #4ECDC4;
+  font-size: 1.3em;
+}
+
+/* line 28, ../sass/_viewspace.scss */
+#viewSpaceHoursOfOperationContainer {
+  width: 350px;
+  padding-left: 60px !important;
+  padding-top: 10px !important;
+}
+
+/* line 34, ../sass/_viewspace.scss */
+#viewSpaceHoursOfOperationContainer {
+  width: 350px;
+  padding-left: 60px !important;
+  padding-top: 20px !important;
+}
+
+/* line 40, ../sass/_viewspace.scss */
+#viewSpaceImagesContainer {
+  background-color: #556270;
+  height: 35%;
+  width: 100%;
+  padding: 20px;
+}
+
+/* line 48, ../sass/_viewspace.scss */
+.viewSpaceImages {
+  height: 230px !important;
+  width: 300px !important;
+  border: 3px solid #dde2e3;
+}
+
+/* line 54, ../sass/_viewspace.scss */
+#viewSpaceFeaturesContainer {
+  padding-left: 50px !important;
+  padding-bottom: 40px !important;
+}
+
+/* line 59, ../sass/_viewspace.scss */
+#viewSpaceDetailsContainer {
+  width: 500px;
+  padding-left: 85px !important;
+  padding-top: 20px !important;
+}
+
+/* line 66, ../sass/_viewspace.scss */
+#featuresList li {
+  display: inline;
+}
+
+/* line 70, ../sass/_viewspace.scss */
+#featuresList {
+  padding: 0;
+}
+
+/* line 74, ../sass/_viewspace.scss */
+#viewSpaceFeaturesContainer {
+  padding-left: 50px !important;
+  padding-bottom: 10px !important;
+}
+
+/* line 79, ../sass/_viewspace.scss */
+#viewSpacePricingContainer {
+  padding-left: 80px !important;
+}
+
+/* line 83, ../sass/_viewspace.scss */
+.newListingLegend {
+  color: #4ECDC4;
+  font-weight: bold;
+}
+
+/* line 88, ../sass/_viewspace.scss */
+#commentList {
+  padding-top: 20px;
+  list-style-type: none;
+}
+
+/* line 93, ../sass/_viewspace.scss */
+#hrColor {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #4ECDC4;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* line 103, ../sass/_viewspace.scss */
+#ratingList li {
+  color: #556270;
+  font-size: 1.7em;
+}
+
+/* line 109, ../sass/_viewspace.scss */
+#mainStar {
+  color: #E4BB24;
+  font-size: 1.3em;
+}
+
+/* line 116, ../sass/_viewspace.scss */
+#averageRatingDiv {
+  background-color: #4ECDC4 !important;
+  width: 170px !important;
+  height: 100px !important;
+  text-align: center;
+  font-size: 2em;
+  position: center;
+  color: #556270;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 0 20px #888 !important;
+  z-index: 1;
+}
+
+/* line 132, ../sass/_viewspace.scss */
+#averageRatingDiv p {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 139, ../sass/_viewspace.scss */
+#averageRatingDiv span {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 145, ../sass/_viewspace.scss */
+#averageRatingFraction {
+  font-size: .7em !important;
+}
+
+/* line 149, ../sass/_viewspace.scss */
+#leaveReviewLink {
+  font-size: .7em !important;
+}
+
+/* line 153, ../sass/_viewspace.scss */
+#averageRatingContainer {
+  position: center;
+  text-align: center;
+  padding-bottom: 200px !important;
+}
+
+/* line 159, ../sass/_viewspace.scss */
+#reviewNum {
+  font-size: .6em;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 165, ../sass/_viewspace.scss */
+#commentStars {
+  color: #E4BB24 !important;
+}
+
+/* line 1, ../sass/_review.scss */
+form .stars {
+  background: url("/images/stars.png") repeat-x 0 0;
+  width: 150px;
+  margin: 0 auto;
+}
+
+/* line 7, ../sass/_review.scss */
+form .stars input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+/* line 13, ../sass/_review.scss */
+form .stars input[type="radio"].star-5:checked ~ span {
+  width: 100%;
+}
+
+/* line 17, ../sass/_review.scss */
+form .stars input[type="radio"].star-4:checked ~ span {
+  width: 80%;
+}
+
+/* line 21, ../sass/_review.scss */
+form .stars input[type="radio"].star-3:checked ~ span {
+  width: 60%;
+}
+
+/* line 25, ../sass/_review.scss */
+form .stars input[type="radio"].star-2:checked ~ span {
+  width: 40%;
+}
+
+/* line 29, ../sass/_review.scss */
+form .stars input[type="radio"].star-1:checked ~ span {
+  width: 20%;
+}
+
+/* line 33, ../sass/_review.scss */
+form .stars label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: -999em;
+  float: left;
+  position: relative;
+  z-index: 10;
+  background: transparent !important;
+  cursor: pointer;
+}
+
+/* line 47, ../sass/_review.scss */
+form .stars label:hover ~ span {
+  background-position: 0 -30px;
+}
+
+/* line 51, ../sass/_review.scss */
+form .stars label.star-5:hover ~ span {
+  width: 100% !important;
+}
+
+/* line 55, ../sass/_review.scss */
+form .stars label.star-4:hover ~ span {
+  width: 80% !important;
+}
+
+/* line 59, ../sass/_review.scss */
+form .stars label.star-3:hover ~ span {
+  width: 60% !important;
+}
+
+/* line 63, ../sass/_review.scss */
+form .stars label.star-2:hover ~ span {
+  width: 40% !important;
+}
+
+/* line 67, ../sass/_review.scss */
+form .stars label.star-1:hover ~ span {
+  width: 20% !important;
+}
+
+/* line 71, ../sass/_review.scss */
+form .stars span {
+  display: block;
+  width: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 30px;
+  background: url("/images/stars.png") repeat-x 0 -60px;
+  -webkit-transition: -webkit-width 0.5s;
+  -moz-transition: -moz-width 0.5s;
+  -ms-transition: -ms-width 0.5s;
+  -o-transition: -o-width 0.5s;
+  transition: width 0.5s;
+}
+
+/* line 86, ../sass/_review.scss */
+#selectRatingTitle {
+  font-family: "Grand Hotel", cursive;
+  font-size: 2.5em;
+}
+
+/* line 4, ../sass/_search.scss */
+#searchPageContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5000px;
+  background: #556270;
+}
+/* line 13, ../sass/_search.scss */
+#searchPageContainer .uk-container {
+  margin-top: 150px;
+}
+/* line 19, ../sass/_search.scss */
+#searchPageContainer #searchHeader article h1 {
+  font-family: "Grand Hotel", cursive;
+  color: #4ECDC4;
+  font-size: 4em;
+}
+/* line 24, ../sass/_search.scss */
+#searchPageContainer #searchHeader article p {
+  font-family: "Open Sans";
+  color: white;
+  font-weight: 300;
+}
+/* line 32, ../sass/_search.scss */
+#searchPageContainer .uk-navbar {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 41, ../sass/_search.scss */
+#searchPageContainer .uk-navbar #filtersLabel {
+  font-family: "Grand Hotel", cursive;
+  font-size: 3em;
+  text-shadow: none !important;
+}
+/* line 48, ../sass/_search.scss */
+#searchPageContainer .uk-navbar #featureSelect .uk-active {
+  background-color: #4ECDC4;
+}
+
+/* line 56, ../sass/_search.scss */
+#resultsContainer {
+  padding: 20px;
+  background-color: #dde2e3;
+}
+
+/* line 61, ../sass/_search.scss */
+.resultItem {
+  box-shadow: 0 0 20px #999 !important;
+  border-style: none;
+  background-color: #556270;
+}
+
+/* line 7, ../sass/_offer.scss */
+.modalHeader {
+  font-family: "Grand Hotel", cursive !important;
+  font-size: 3.9em;
+  color: #4ECDC4;
+  background-color: #556270;
+  border-bottom: 1px solid #556270 !important;
+  text-align: center !important;
+}
+
+/* line 17, ../sass/_offer.scss */
+.modalFooter {
+  border-top: 1px solid #556270 !important;
+  background-color: #556270;
+}
+
+/* line 22, ../sass/_offer.scss */
+.offerModal {
+  width: 500px !important;
+}
+
+/* line 27, ../sass/_offer.scss */
+.formIcon {
+  color: #4ECDC4 !important;
+}
+
+/* line 31, ../sass/_offer.scss */
+.checkBoxList li {
+  display: inline;
+  padding: 3px;
+}
+
+/* line 36, ../sass/_offer.scss */
+#offerErrorList {
+  list-style-type: none;
+}
+
+/* line 40, ../sass/_offer.scss */
+.disabledColor {
+  color: #556270;
+}
+
+/* line 44, ../sass/_offer.scss */
+.checkBoxTable {
+  color: #4ECDC4;
+  font-size: 1.05em;
+  text-align: left !important;
+}
+
+/* line 50, ../sass/_offer.scss */
+#rentingTypeLabel {
+  font-size: 1.2em;
+}
+
+/* line 54, ../sass/_offer.scss */
+.timeFrameText {
+  font-size: 1.2em;
+  background-color: #dde2e3 !important;
+  color: #556270;
+  width: 300px !important;
+}
+
+/* line 61, ../sass/_offer.scss */
+.timeFrameSorryDays {
+  font-size: 1.2em;
+  width: 300px !important;
+}
+
+/* line 9, ../sass/_profile.scss */
+#profileLeftContainer {
+  padding: 2% 1% 1% 1%;
+  height: 120vh;
+  background-color: #556270;
+}
+/* line 14, ../sass/_profile.scss */
+#profileLeftContainer h1 {
+  color: #4ECDC4;
+  font-family: "Grand Hotel", cursive;
+  font-size: 5em;
+  text-align: center;
+  padding-top: 105px;
+}
+/* line 21, ../sass/_profile.scss */
+#profileLeftContainer p {
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+  padding-bottom: 20px !important;
+}
+
+/* line 30, ../sass/_profile.scss */
+#profilePic {
+  border: 3px solid #4ECDC4;
+  height: 250px !important;
+  width: 250px !important;
+}
+
+/* line 36, ../sass/_profile.scss */
+#spacesDiv {
+  clear: both;
+  top: 0;
+  height: 50%;
+  width: 100%;
+}
+
+/* line 43, ../sass/_profile.scss */
+#infoDiv {
+  clear: both;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+}
+
+/* line 51, ../sass/_profile.scss */
+#profileRightContainer h1 {
+  color: #4ECDC4;
+  font-family: "Grand Hotel", cursive;
+  font-size: 3em;
+  padding-top: 50px;
+}
+
+/* line 60, ../sass/_profile.scss */
+.profileSpaceImage {
+  height: 205px !important;
+  width: 300px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* line 67, ../sass/_profile.scss */
+.spaceImageListItem {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+/* line 72, ../sass/_profile.scss */
+#hrSeparator {
+  display: block;
+  height: 1px;
+  border-top: 2px solid #4ECDC4;
+  margin-right: 40px !important;
+}
+
+/* line 79, ../sass/_profile.scss */
+#aboutHeader {
+  padding-top: 0 !important;
+}
+
+/* line 83, ../sass/_profile.scss */
+.aboutTitles {
+  font-size: 1.2em;
+}
+
+/* line 87, ../sass/_profile.scss */
+#ratingDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 97px;
+  height: 64px;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #4ECDC4;
+  box-shadow: 0 0 20px #888 !important;
+}
+
+/* line 99, ../sass/_profile.scss */
+#profileStar {
+  font-size: 2.3em;
+  color: #E4BB24;
+  padding-left: 5px;
+}
+
+/* line 105, ../sass/_profile.scss */
+#rating {
+  font-size: 1.5em;
+}
+
+/* line 109, ../sass/_profile.scss */
+#fraction {
+  font-size: 1.2em;
+}
+
+/* line 113, ../sass/_profile.scss */
+#editProfileLink {
+  float: right;
+  padding-right: 7px;
+  padding-top: 2px;
+}
+
+/* line 119, ../sass/_profile.scss */
+#editIconName {
+  color: #4ECDC4;
+  padding-top: 135px;
+}
+
+/* line 124, ../sass/_profile.scss */
+#editIconBio {
+  color: #4ECDC4;
+  padding-top: 7px;
+}
+
+/* line 129, ../sass/_profile.scss */
+#editIconProfilePic {
+  color: #4ECDC4;
+}
+
+/* line 135, ../sass/_profile.scss */
+#nameInput {
+  color: #4ECDC4;
+  font-family: "Grand Hotel", cursive;
+  font-size: 2em;
+  text-align: center !important;
+}
+
+/* line 142, ../sass/_profile.scss */
+#bioInput {
+  color: #4ECDC4;
+  font-size: 1.6em;
+  text-align: center !important;
+}
+
+/* line 148, ../sass/_profile.scss */
+.saveIcon {
+  color: white !important;
+}
+
+/* line 152, ../sass/_profile.scss */
+.tableIcon {
+  float: left;
+}
+
+/* line 156, ../sass/_profile.scss */
+.tableIcon {
+  color: #4ECDC4;
+}
+
+/* line 160, ../sass/_profile.scss */
+.saveIconTable {
+  color: #556270 !important;
+}
+
+/* line 164, ../sass/_profile.scss */
+.removeIcon {
+  font-size: 1.24em;
+  padding-top: 5px;
+  padding-left: 100px;
+}
+
+/* line 170, ../sass/_profile.scss */
+#changePassword {
+  text-align: center !important;
+}
+
+/* line 174, ../sass/_profile.scss */
+.icons {
+  color: #4ECDC4;
+}
+
+/* line 178, ../sass/_profile.scss */
+.profileModals {
+  width: 400px;
+}
+
+/* line 182, ../sass/_profile.scss */
+#settingsButton {
+  position: relative;
+  top: 70px;
+  right: 13px;
+  background-color: white;
+}
+
+/* line 189, ../sass/_profile.scss */
+.settingsButtons {
+  width: 160px;
+}
+
+/* line 8, ../sass/_bankInfo.scss */
+#bankInfoWrapper {
+  height: 120vh;
+}
+
+/* line 13, ../sass/_bankInfo.scss */
+#bankInfoContainer h1 {
+  padding-top: 50px !important;
+  font-family: "Grand Hotel", cursive !important;
+  color: #4ECDC4;
+  font-size: 4em;
+}
+/* line 20, ../sass/_bankInfo.scss */
+#bankInfoContainer p {
+  font-family: "Open Sans";
+  color: white;
+  font-weight: 300;
+}
+/* line 26, ../sass/_bankInfo.scss */
+#bankInfoContainer h6 {
+  margin-top: 0 !important;
+}
+
+/* line 31, ../sass/_bankInfo.scss */
+#bankInfoDiv {
+  width: 390px !important;
+  align-content: center !important;
+  margin-top: 40px;
+}
+
+/* line 17, ../sass/style.scss */
+html {
+  font-family: "Open Sans";
+}
+
+/*Login and Register pages*/
+/* line 22, ../sass/style.scss */
+.loginRegisterWrapper {
+  width: 100% !important;
+  background-color: #556270;
+}
+
+/* line 26, ../sass/style.scss */
+.loginRegisterHeader {
+  font-family: "Grand Hotel", cursive;
+  font-size: 100px !important;
+  color: #4ECDC4;
+}
+
+/* line 31, ../sass/style.scss */
+.loginRegisterFormContainer {
+  background-color: #dde2e3;
+}
+
+/* line 41, ../sass/style.scss */
+#verifyMessageContainer {
+  padding: 75px 10px 75px 10px;
+  color: white;
+  font-size: large;
+  border: #dde2e3 solid 2px;
+}
+
+/* line 50, ../sass/style.scss */
+#menuShowBtn {
+  text-shadow: none !important;
+  position: fixed;
+  left: 0;
+  top: 100px;
+  /*height: 50px;*/
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 0 5px #888 !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #4ECDC4;
+  border: 1px solid #4ECDC4;
+  font-family: "Grand Hotel", cursive !important;
+  font-size: 2em;
+  padding: 5px;
+  z-index: 1;
+}
+
+/* line 69, ../sass/style.scss */
+#menuHideBtn {
+  position: absolute;
+  left: 0 !important;
+  top: 0 !important;
+  left: -55px;
+  top: 30px;
+  height: inherit;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  background-color: white;
+  z-index: 1;
+}
+
+/* line 86, ../sass/style.scss */
+#menuHideBtn:hover {
+  background-color: #4ECDC4;
+  color: white;
+}
+
+/* line 90, ../sass/style.scss */
+#menu {
+  text-align: center;
+  font-size: 1.2em;
+  position: fixed;
+  top: 100px;
+  left: 15px;
+  width: 150px;
+  z-index: 1;
+  box-shadow: 0 0 5px #888 !important;
+  background-color: white;
+}
+
+/* line 112, ../sass/style.scss */
+#menuTitle {
+  padding-top: 7px;
+  font-family: "Grand Hotel", cursive;
+  font-size: 2em;
+  text-align: center;
+}

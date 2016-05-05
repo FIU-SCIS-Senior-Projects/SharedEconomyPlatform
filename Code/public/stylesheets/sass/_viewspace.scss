@@ -1,0 +1,173 @@
+#viewSpaceMapContainer {
+  width: 100%;
+
+}
+
+#viewSpaceMapContainer {
+  height: 709px;
+}
+
+#viewSpaceLeftContainer {
+  background-color: #556270;
+
+}
+
+.viewSpaceTitles {
+  color: #556270;
+  font-weight: bold;
+
+}
+
+#viewSpaceAddressDiv {
+  position: absolute;
+  bottom: 0;
+  color: #4ECDC4;
+  font-size: 1.3em;
+}
+
+#viewSpaceHoursOfOperationContainer {
+  width: 350px;
+  padding-left: 60px !important;
+  padding-top: 10px !important;
+}
+
+#viewSpaceHoursOfOperationContainer {
+  width: 350px;
+  padding-left: 60px !important;
+  padding-top: 20px !important;
+}
+
+#viewSpaceImagesContainer {
+  background-color: #556270;
+  height: 35%;
+  width: 100%;
+  padding: 20px;
+
+}
+
+.viewSpaceImages {
+  height: 230px !important;
+  width: 300px !important;
+  border: 3px solid #dde2e3;
+}
+
+#viewSpaceFeaturesContainer {
+  padding-left: 50px !important;
+  padding-bottom: 40px !important;
+}
+
+#viewSpaceDetailsContainer {
+  width: 500px;
+  padding-left: 85px !important;
+  padding-top: 20px !important;
+
+}
+
+#featuresList li {
+  display: inline;
+}
+
+#featuresList {
+  padding: 0;
+}
+
+#viewSpaceFeaturesContainer {
+  padding-left: 50px !important;
+  padding-bottom: 10px !important;
+}
+
+#viewSpacePricingContainer {
+  padding-left: 80px !important;
+}
+
+.newListingLegend {
+  color: #4ECDC4;
+  font-weight: bold;
+}
+
+#commentList {
+  padding-top: 20px;
+  list-style-type: none;
+}
+
+#hrColor {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #4ECDC4;
+  margin: 1em 0;
+  padding: 0;
+}
+
+#ratingList {
+  li {
+    color: #556270;
+    font-size: 1.7em;
+  }
+}
+
+#mainStar {
+  color: #E4BB24;
+  font-size: 1.3em;
+  //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+}
+
+#averageRatingDiv {
+  background-color: #4ECDC4 !important;
+  width: 170px !important;
+  height: 100px !important;
+  text-align: center;
+  font-size: 2em;
+  position: center;
+  color: #556270;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 0 20px #888 !important;
+  z-index: 1;
+
+}
+
+#averageRatingDiv {
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#averageRatingDiv {
+  span {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#averageRatingFraction {
+  font-size: .7em !important;
+}
+
+#leaveReviewLink {
+  font-size: .7em !important;
+}
+
+#averageRatingContainer {
+  position: center;
+  text-align: center;
+  padding-bottom: 200px !important;
+}
+
+#reviewNum {
+  font-size: .6em;
+  padding: 0;
+  margin: 0;
+}
+
+#commentStars {
+  color: #E4BB24 !important;
+}
+
+
+
+
+
+

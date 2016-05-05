@@ -1,0 +1,198 @@
+@import "fontstack";
+@import "panel_header";
+@import "colorstack";
+
+$primary-color: #4ECDC4;
+$dark-background: #556270;
+$light-background: #dde2e3;
+
+#profileLeftContainer {
+  padding: 2% 1% 1% 1%;
+  height: 120vh;
+  background-color: $dark-background;
+
+  h1 {
+    color: $primary-color;
+    font-family: $cursive;
+    font-size: 5em;
+    text-align: center;
+    padding-top: 105px;
+  }
+  p {
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom: 20px !important;
+  }
+
+}
+
+#profilePic {
+  border: 3px solid $primary-color;
+  height: 250px !important;
+  width: 250px !important;
+}
+
+#spacesDiv {
+  clear: both;
+  top: 0;
+  height: 50%;
+  width: 100%;
+}
+
+#infoDiv {
+  clear: both;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+}
+
+#profileRightContainer {
+  h1 {
+    color: $primary-color;
+    font-family: $cursive;
+    font-size: 3em;
+    padding-top: 50px;
+  }
+
+}
+
+.profileSpaceImage {
+  height: 205px !important;
+  width: 300px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.spaceImageListItem {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+#hrSeparator {
+  display: block;
+  height: 1px;
+  border-top: 2px solid $primary-color;
+  margin-right: 40px !important;
+}
+
+#aboutHeader {
+  padding-top: 0 !important;
+}
+
+.aboutTitles {
+  font-size: 1.2em;
+}
+
+#ratingDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 97px;
+  height: 64px;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: $primary-color;
+  box-shadow: 0 0 20px #888 !important;
+}
+
+#profileStar {
+  font-size: 2.3em;
+  color: #E4BB24;
+  padding-left: 5px;
+}
+
+#rating {
+  font-size: 1.5em;
+}
+
+#fraction {
+  font-size: 1.2em;
+}
+
+#editProfileLink {
+  float: right;
+  padding-right: 7px;
+  padding-top: 2px;
+}
+
+#editIconName {
+  color: $primary-color;
+  padding-top: 135px;
+}
+
+#editIconBio {
+  color: $primary-color;
+  padding-top: 7px;
+}
+
+#editIconProfilePic {
+  color: $primary-color;
+  //padding-top: 220px;
+  //padding-right: 100px !important;
+}
+
+#nameInput {
+  color: $primary-color;
+  font-family: $cursive;
+  font-size: 2em;
+  text-align: center !important;
+}
+
+#bioInput {
+  color: $primary-color;
+  font-size: 1.6em;
+  text-align: center !important;
+}
+
+.saveIcon {
+  color: white !important;
+}
+
+.tableIcon {
+  float: left;
+}
+
+.tableIcon {
+  color: $primary-color;
+}
+
+.saveIconTable {
+  color: $dark-background !important;
+}
+
+.removeIcon {
+  font-size: 1.24em;
+  padding-top: 5px;
+  padding-left: 100px;
+}
+
+#changePassword {
+  text-align: center !important;
+}
+
+.icons {
+  color: $primary-color;
+}
+
+.profileModals {
+  width: 400px;
+}
+
+#settingsButton {
+  position: relative;
+  top: 70px;
+  right: 13px;
+  background-color: white;
+}
+
+.settingsButtons {
+  width: 160px;
+}
+
+
+
+
+
+
+

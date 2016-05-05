@@ -1,0 +1,64 @@
+@import "fontstack";
+
+$primary-color: #4ECDC4;
+$dark-background: #556270;
+$light-background: #dde2e3;
+
+.modalHeader {
+  font-family: $cursive !important;
+  font-size: 3.9em;
+  color: $primary-color;
+  background-color: $dark-background;
+  border-bottom: 1px solid #556270 !important;
+  text-align: center !important;
+
+}
+
+.modalFooter {
+  border-top: 1px solid #556270 !important;
+  background-color: $dark-background;
+}
+
+.offerModal {
+  width: 500px !important;
+
+}
+
+.formIcon {
+  color: #4ECDC4 !important;
+}
+
+.checkBoxList li {
+  display: inline;
+  padding: 3px;
+}
+
+#offerErrorList {
+  list-style-type: none;
+}
+
+.disabledColor {
+  color: #556270;
+}
+
+.checkBoxTable {
+  color: #4ECDC4;
+  font-size: 1.05em;
+  text-align: left !important;
+}
+
+#rentingTypeLabel {
+  font-size: 1.2em;
+}
+
+.timeFrameText {
+  font-size: 1.2em;
+  background-color: #dde2e3 !important;
+  color: #556270;
+  width: 300px !important;
+}
+
+.timeFrameSorryDays {
+  font-size: 1.2em;
+  width: 300px !important;
+}

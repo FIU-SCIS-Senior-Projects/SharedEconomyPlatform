@@ -1,0 +1,1398 @@
+<div class="uk-grid">
+    {{>google_maps_loader}}
+        <div class="uk-width-1-1 uk-width-medium-1-3" id="viewSpaceLeftContainer">
+            <div class="uk-width-1-1 uk-container-center" id="viewSpaceMapContainer">
+                <div class="uk-height-1-1 uk-width-1-1" id="viewSpaceMap"></div>
+            </div>
+        </div>
+        <div class="uk-width-1-1 uk-width-medium-2-3 uk-form" id="viewSpaceRightContainer">
+            <div class="uk-sticky-placeholder uk-align-center" data-uk-sticky id="averageRatingDiv">
+                <p class="uk-margin-top uk-icon-star" id="mainStar"></p>
+                <strong> {{averageRating}}</strong>
+                <span id="averageRatingFraction"> / 5</span>
+                <p id="reviewNum">{{totalReviews}} Reviews</p>
+                        <span id="leaveReviewLink">
+                            <h4 class="uk-padding-remove"><a class="uk-padding-remove uk-margin-top-remove"
+                                                             href="/review/{{id}}">Leave a Review</a></h4>
+                        </span>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-1 uk-width-medium-1-2 uk-padding-vertical-remove uk-grid data-uk-grid-margin"
+                     id="viewSpaceDetailsContainer">
+                    <legend class="newListingLegend">Space Details</legend>
+                    <div class="detailsDiv uk-width-1-1 uk-width-medium-1-2 uk-padding-remove uk-margin-remove">
+                        <p class="viewSpaceTitles">Name</p>
+                        {{spaceName}}
+                        <p class="viewSpaceTitles">Phone Number</p>
+                        {{spaceNumber}}
+                        <p class="viewSpaceTitles">Email</p>
+                        <a href="/profile/{{username}}">{{spaceEmail}}</a>
+                        <p class="viewSpaceTitles">Website</p>
+                        {{spaceWebsite}}
+                        <p class="viewSpaceTitles">Type</p>
+                        {{spaceType}}
+                    </div>
+                    <div class="detailsDiv uk-width-1-1 uk-padding-remove uk-width-medium-1-2">
+                        <p class="viewSpaceTitles">Floors</p>
+                        {{spaceFloors}}
+                        <p class="viewSpaceTitles">Square Feet</p>
+                        {{spaceSquareFeet}}
+                        <p class="viewSpaceTitles">Number of Rooms</p>
+                        {{spaceRooms}}
+                        <p class="viewSpaceTitles">Number of Desks</p>
+                        {{spaceDesks}}
+                        <p class="viewSpaceTitles">Description</p>
+                        {{spaceDescription}}
+                    </div>
+                </div>
+                <div class="uk-width-1-1 uk-padding-remove uk-width-medium-1-3" id="viewSpaceHoursOfOperationContainer">
+                    <legend class="newListingLegend">Hours of Operation</legend>
+                    <table class="uk-table">
+                        <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Open</th>
+                            <th>Close</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--Monday-->
+                        <tr>
+                            <td>Monday</td>
+                            <td>{{mondayOpen}}</td>
+                            <td>{{mondayClosed}}</td>
+                        </tr>
+                        <!--Tuesday-->
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>{{tuesdayOpen}}</td>
+                            <td>{{tuesdayClosed}}</td>
+                        </tr>
+                        <!--Wednesday-->
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>{{wednesdayOpen}}</td>
+                            <td>{{wednesdayClosed}}</td>
+                        </tr>
+                        <!--Thursday-->
+                        <tr>
+                            <td>Thursday</td>
+                            <td>{{thursdayOpen}}</td>
+                            <td>{{thursdayClosed}}</td>
+                        </tr>
+                        <!--Friday-->
+                        <tr>
+                            <td>Friday</td>
+                            <td>{{fridayOpen}}</td>
+                            <td>{{fridayClosed}}</td>
+                        </tr>
+                        <!--Saturday-->
+                        <tr>
+                            <td>Saturday</td>
+                            <td>{{saturdayOpen}}</td>
+                            <td>{{saturdayClosed}}</td>
+                        </tr>
+                        <!--Sunday-->
+                        <tr>
+                            <td>Sunday</td>
+                            <td>{{sundayOpen}}</td>
+                            <td>{{sundayClosed}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-1 uk-width-medium-1-2 uk-padding-vertical-remove"
+                     id="viewSpaceFeaturesContainer">
+                    <legend class="newListingLegend">Features</legend>
+                    <ul id="featuresList">
+                        {{#each feature}}
+                            <li>
+                                <button type="button" class="uk-button uk-button-primary uk-icon-small {{this.class}}"
+                                        data-uk-tooltip="{pos:'top'}" title={{this.tooltip}}></button>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="uk-width-1-1 uk-width-medium-1-2 uk-padding-vertical-remove" id="viewSpacePricingContainer">
+                    <legend class="newListingLegend">Pricing</legend>
+                    <table class="uk-table">
+                        <thead>
+                        <tr>
+                            <th>Hour</th>
+                            <th>Day</th>
+                            <th>Month</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--Monday-->
+                        <tr>
+                            <td>${{perHour}}</td>
+                            <td>${{perDay}}</td>
+                            <td>${{perMonth}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="">
+                        <tbody>
+                        <tr>
+                            <td>
+                                {{#unless user}}
+                                    <form action="/offer/verify" method="post">
+                                        <button class="uk-button uk-width-1-1 uk-button-primary"
+                                                name="spaceId" id="offerButton" value="{{id}}" type="submit">Make Offer
+                                        </button>
+                                    </form>
+                                {{/unless}}
+                                {{#if user}}
+                                    <button class="uk-button uk-width-1-1 uk-button-primary"
+                                            data-uk-modal="{target:'#offer'}">Make Offer
+                                    </button>
+                                    {{>offer perHour = perHour perDay = perDay perMonth = perMonth spaceId = id spaceOwner = owner}}
+                                {{/if}}
+                            </td>
+                            <td>
+                                {{#unless user}}
+                                    <form action="/offer/verify" method="post">
+                                        <button class="uk-button uk-width-1-1 uk-button-primary"
+                                                name="spaceId" value="{{id}}" type="submit">Rent Now
+                                        </button>
+                                    </form>
+                                {{/unless}}
+                                {{#if user}}
+                                    <button class="uk-button uk-width-1-1 uk-button-primary"
+                                            data-uk-modal="{target:'#rentNow'}">Rent Now
+                                    </button>
+                                    {{>rentnow perHour = perHour perDay = perDay perMonth = perMonth spaceId = id spaceOwner = owner}}
+                                {{/if}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="viewSpaceImagesContainer">
+        {{>uikit_components/slideset}}
+        {{>uikit_components/lightbox}}
+        <div class="uk-margin" data-uk-slideset="{default: 4}" style="">
+            <div class="uk-slidenav-position uk-margin">
+                <ul class="uk-slideset uk-grid uk-flex-center uk-grid-width-1-4">
+                    {{#each images}}
+                        <li>
+                            <a href="data:image;base64,{{this}}" data-uk-lightbox="{group:'group1'}"
+                               data-lightbox-type="image">
+                                <img class="viewSpaceImages" src="data:image;base64,{{this}}">
+                            </a>
+                        </li>
+                    {{/each}}
+                </ul>
+                <a href="#" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+                <a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
+            </div>
+        </div>
+    </div>
+    <div class="uk-grid">
+        <div id="commentDiv" class="uk-width-1-1 uk-width-medium-1-2 uk-padding-vertical-remove data-uk-grid-margin">
+            <ul id="commentList">
+                {{#each reviews}}
+                    <li class="more_text">
+                        <article class="uk-comment uk-comment-primary">
+                            <header class="uk-comment-header">
+                                <img class="uk-comment-avatar" src="/images/avatar.png" width="50" height="50" alt="">
+                                <h4 class="uk-comment-title"><a href="/profile/{{this.username}}">{{this.username}}</a>
+                                    | {{this.formattedDate}}</h4>
+                                <div class="uk-comment-meta">
+                                    <ul id="ratingList">
+                                        {{#times rating}}
+                                            <li class="uk-icon-star" id="commentStars"></li>
+                                        {{/times}}
+                                        {{#timesAndSubtract rating}}
+                                            <li class="uk-icon-star-o"></li>
+                                        {{/timesAndSubtract}}
+                                    </ul>
+                                </div>
+                            </header>
+                            <div class="uk-comment-body">{{this.description}}</div>
+                        </article>
+                        <hr id="hrColor">
+                        <br>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+        <button class="uk-hidden" id="longitude" value="{{longitude}}"></button>
+        <button class="uk-hidden" id="latitude" value="{{latitude}}"></button>
+        <div class="uk-width-1-1 uk-width-medium-1-2 uk-padding-vertical-remove data-uk-grid-margin"></div>
+    </div>
+
+
+<script type="text/javascript">
+
+    GoogleMapsLoader.load(function (google) {
+
+        var mapElement = $("#viewSpaceMap")[0];
+        var viewSpaceMap;
+        var marker;
+        var geolocation;
+
+        //Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                geolocation = {
+                    lat: Number($("#latitude").val()),
+                    lng: Number($("#longitude").val())
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+
+                //set map component
+                viewSpaceMap = new google.maps.Map(mapElement, {
+                    center: geolocation,
+                    zoom: 15
+                });
+                marker = new google.maps.Marker({
+                    position: geolocation,
+                    animation: google.maps.Animation.DROP,
+                    map: viewSpaceMap
+                });
+            });
+        } else {
+            //set map component when no location obtained from browser
+            viewSpaceMap = new google.maps.Map(mapElement, {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 10
+            });
+            marker = new google.maps.Marker({
+                position: geolocation,
+                animation: google.maps.Animation.DROP,
+                map: viewSpaceMap
+            });
+        }
+
+
+    });
+
+    $(function () { /* to make sure the script runs after page load */
+
+        $('a.read_more').click(function (event) { /* find all a.read_more elements and bind the following code to them */
+
+            event.preventDefault();
+            /* prevent the a from changing the url */
+            $(this).parents('.item').find('.more_text').show();
+            /* show the .more_text span */
+
+        });
+
+    });
+
+</script>
+
+{{>dependencies/pikaday}}
+{{>dependencies/stripe}}
+<script type="text/javascript">
+
+    var hoursOfOperation = [], temp = [], temp2 = [];
+    var hourMap = {
+        "12am-1am": 1, "1am-2am": 2, "2am-3am": 3, "3am-4am": 4, "4am-5am": 5, "5am-6am": 6,
+        "6am-7am": 7, "7am-8am": 8, "8am-9am": 9, "9am-10am": 10, "10am-11am": 11, "11am-12pm": 12, "12pm-1pm": 13,
+        "1pm-2pm": 14, "2pm-3pm": 15, "3pm-4pm": 16, "4pm-5pm": 17, "5pm-6pm": 18, "6pm-7pm": 19, "7pm-8pm": 20,
+        "8pm-9pm": 21, "9pm-10pm": 22, "10pm-11pm": 23, "11pm-12am": 24
+    };
+
+    var hourMap2 = {
+        "12:00 AM - 01:00 AM": 1,
+        "01:00 AM - 02:00 AM": 2,
+        "02:00 AM - 03:00 AM": 3,
+        "03:00 AM - 04:00 AM": 4,
+        "04:00 AM - 05:00 AM": 5,
+        "05:00 AM - 06:00 AM": 6,
+        "06:00 AM - 07:00 AM": 7,
+        "07:00 AM - 08:00 AM": 8,
+        "08:00 AM - 09:00 AM": 9,
+        "09:00 AM - 10:00 AM": 10,
+        "10:00 AM - 11:00 AM": 11,
+        "11:00 AM - 12:00 PM": 12,
+        "12:00 PM - 01:00 PM": 13,
+        "01:00 PM - 02:00 PM": 14,
+        "02:00 PM - 03:00 PM": 15,
+        "03:00 PM - 04:00 PM": 16,
+        "04:00 PM - 05:00 PM": 17,
+        "05:00 PM - 06:00 PM": 18,
+        "06:00 PM - 07:00 PM": 19,
+        "07:00 PM - 08:00 PM": 20,
+        "08:00 PM - 09:00 PM": 21,
+        "09:00 PM - 10:00 PM": 22,
+        "10:00 PM - 11:00 PM": 23,
+        "11:00 PM - 12:00 AM": 24
+    };
+
+    var hourArrayOpen = ["12:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM",
+        "06:00 AM", "07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+        "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM",
+        "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"];
+
+    var hourArrayClose = ["01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM",
+        "06:00 AM", "07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+        "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM",
+        "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM", "12:00 AM"];
+
+    var hourMapping = {
+        "01:00 AM": "1am",
+        "02:00 AM": "2am",
+        "03:00 AM": "3am",
+        "04:00 AM": "4am",
+        "05:00 AM": "5am",
+        "06:00 AM": "6am",
+        "07:00 AM": "7am",
+        "08:00 AM": "8am",
+        "09:00 AM": "9am",
+        "10:00 AM": "10am",
+        "11:00 AM": "11am",
+        "12:00 PM": "12pm",
+        "01:00 PM": "1pm",
+        "02:00 PM": "2pm",
+        "03:00 PM": "3pm",
+        "04:00 PM": "4pm",
+        "05:00 PM": "5pm",
+        "06:00 PM": "6pm",
+        "07:00 PM": "7pm",
+        "08:00 PM": "8pm",
+        "09:00 PM": "9pm",
+        "10:00 PM": "10pm",
+        "11:00 PM": "11pm",
+        "12:00 AM": "12am"
+    };
+
+    var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var unavailableHours = {};
+    var unavailableDates = [];
+    var theUnavailableHours = [];
+    var error = false;
+
+    //function that calculates the dates that will be sent to the server
+    function calculateDates(date, duration) {
+        var dates = []; // to store the dates we will send
+
+        // add the first date
+        dates.push(date);
+
+        // advance to the next date
+        date = moment(new Date(date)).add(1, 'days');
+
+        while (duration > 0) {
+            var day = moment(new Date(date)).format('dddd');
+
+            while (temp.indexOf(day) != -1) { //while the office is closed that day
+                // go to the next date
+                date = moment(new Date(date)).add(1, 'days');
+                day = moment(new Date(date)).format('dddd');
+
+            }
+
+            dates.push(moment(new Date(date)).format("MM/DD/YYYY"));
+
+            //go to next day
+            date = moment(new Date(date)).add(1, 'days');
+
+            duration--;
+        }
+
+        return dates;
+
+    }
+
+    // Function handles the Stripe response for offers:
+    function stripeResponseHandlerOffer(status, response) {
+
+        // Check for an error:
+        if (response.error) {
+
+            $('#offerError').html(response.error.message);
+            $("#offerError").removeClass("uk-hidden");
+
+        } else { // No errors, submit the form:
+
+            var temp = ""; //this is what we will send to the server
+
+
+            // Token contains id, last4, and card type:
+            var token = response['id'];
+
+
+            // get the data from the form
+            var data = $("#offerForm").serialize();
+
+            //see which hours were chosen and put into String to send to server
+            if ($('#perHourButton').hasClass("uk-active")) { //user is choosing to pay by hour
+
+                for (var i = 1; i < 25; i++) {
+                    if ($('[name = ' + i + "]").is(":checked")) {
+                        temp = temp + hourArrayOpen[i - 1] + " - " + hourArrayClose[i - 1] + ",";
+                    }
+                }
+
+                // attach the hours details to the data, the spaceId, and the owner of the space
+                data = data + "&hours=" + temp + "&ownerId=" + $("#perDayButton").val()
+                        + "&spaceId=" + $("#perHourButton").val() + "&stripeToken=" + token;
+            }
+
+            //determine the days in the time frame
+            if ($('#perDayButton').hasClass("uk-active")) { //user is choosing to pay by day
+                var date = $("#datePickerPerDay").val();
+                var duration = $("#durationDays").val() - 1;
+
+                var dates = calculateDates(date, duration);
+
+                // attach the dates details to the data, the spaceId, and the owner of the space
+                data = data + "&days=" + dates + "&ownerId=" + $("#perDayButton").val()
+                        + "&spaceId=" + $("#perHourButton").val() + "&stripeToken=" + token;
+            }
+
+
+            //console.log("sending: " + data);
+            //send form to backend via ajax call
+            $.ajax({
+                type: "POST",
+                url: "/offer/submit",
+                data: data,
+            }).success(function (response, status) {
+
+                UIkit.modal.alert(response.message);
+
+                //close the offer modal
+                $("#modalClose").trigger("click");
+
+
+            }).fail(function (err, status) {
+                console.log("failure");
+                console.log(err);
+
+            });
+
+        }
+
+    } // End of stripeResponseHandler() offers function.
+
+    // Function handles the Stripe response for rent now:
+    function stripeResponseHandlerRentNow(status, response) {
+
+        // Check for an error:
+        if (response.error) {
+
+            $('#rentNowError').html(response.error.message);
+            $("#rentNowError").removeClass("uk-hidden");
+
+        } else { // No errors, submit the form:
+
+            var temp = ""; //this is the hours we will send to the server
+
+            // Token contains id, last4, and card type:
+            var token = response['id'];
+
+
+            //see which hours were chosen and put into String to send to server
+            if ($('#perHourButtonRentNow').hasClass("uk-active")) { //user is choosing to pay by hour
+
+                for (var i = 1; i < 25; i++) {
+                    if ($('[name = checkbox' + i + "]").is(":checked")) {
+                        temp = temp + hourArrayOpen[i - 1] + " - " + hourArrayClose[i - 1] + ",";
+                    }
+                }
+
+
+                var data = {
+                    hours: temp,
+                    stripeToken: token,
+                    price: $("#price").val(),
+                    ownerId: $("#perDayButton").val(),
+                    spaceId: $("#perHourButton").val(),
+                    date: $("#datePickerPerHourRentNow").val(),
+                    type: "hourly"
+                };
+
+            }
+
+            //determine the days in the time frame
+            if ($('#perDayButtonRentNow').hasClass("uk-active")) { //user is choosing to pay by day
+                var date = $("#datePickerPerDayRentNow").val();
+                var duration = $("#durationDaysRentNow").val() - 1;
+
+                var theDates = calculateDates(date, duration);
+
+                var data = {
+                    stripeToken: token,
+                    price: $("#price").val(),
+                    ownerId: $("#perDayButton").val(),
+                    spaceId: $("#perHourButton").val(),
+                    dates: theDates.toString(),
+                    type: "daily"
+
+                };
+
+            }
+
+
+            //console.log("sending: " + data);
+            //send form to backend via ajax call
+            $.ajax({
+                type: "POST",
+                url: "/rentnow/submit",
+                data: data,
+            }).success(function (response, status) {
+
+                UIkit.modal.alert(response.message);
+
+                //close the offer modal if there was no error
+                if (!response.error) {
+                    $("#modalCloseRentNow").trigger("click");
+                }
+
+                $("#spinnerIcon").addClass("uk-hidden");
+
+
+            }).fail(function (err, status) {
+                console.log("failure");
+                console.log(err);
+
+            });
+
+        }
+
+    } // End of stripeResponseHandler() rent now function.
+
+
+    function createUnavailableHours(hours) {
+        var indexOpen, indexClose;
+
+
+        for (var i = 0; i < hoursOfOperation.length; i++) {
+
+
+            var tempHourArrayOpen = hourArrayOpen.slice();
+            var tempHourArrayClose = hourArrayClose.slice();
+
+
+            if (hoursOfOperation[i].open != 'Closed') {
+
+                indexOpen = tempHourArrayOpen.indexOf(hoursOfOperation[i].open);
+                indexClose = tempHourArrayClose.indexOf(hoursOfOperation[i].closed) + 1;
+
+
+                tempHourArrayOpen.splice(indexOpen, indexClose - indexOpen);
+                tempHourArrayClose.splice(indexOpen, indexClose - indexOpen);
+
+                for (var j = 0; j < tempHourArrayClose.length; j++) {
+                    temp2.push(hourMap[hourMapping[tempHourArrayOpen[j]] + "-" + hourMapping[tempHourArrayClose[j]]]);
+
+                }
+
+                unavailableHours[daysOfWeek[i]] = temp2;
+                temp2 = [];
+
+            }
+
+
+        }
+
+    }
+    // do this as soon as modal is opened
+    $('.modals').on({
+
+        'show.uk.modal': function () {
+            //console.log("Modal is visible.");
+            var spaceId = $("#perHourButton").val();
+            $("#perHourButton").removeClass('uk-active');
+            $("#perHourButtonRentNow").removeClass('uk-active');
+
+
+            // get the hours of operation
+            $.ajax({
+                type: "POST",
+                url: "/offer/unavailableHoursAndDays",
+                data: {spaceId: spaceId},
+            }).success(function (response, status) {
+
+                hoursOfOperation = response.hoursOfOperation;
+                unavailableDates = response.unavailableDates;
+                theUnavailableHours = response.unavailableHours;
+
+                for (var i = 0; i < hoursOfOperation.length; i++) {
+
+                    if (hoursOfOperation[i].open == "Closed") {
+                        temp.push(daysOfWeek[i]);
+                    }
+                }
+
+                createUnavailableHours(hoursOfOperation);
+
+
+            }).fail(function (err, status) {
+                console.log("failure");
+                console.log(err);
+
+            });
+
+
+        },
+        //do this when modal is closed
+        'hide.uk.modal': function () {
+            temp = [];
+            unavailableDates = [];
+            theUnavailableHours = [];
+        }
+    });
+    $(document).ready(function () {
+
+        function validateOfferForm(callback) {
+            callback();
+
+        };
+
+        function isEmpty(inputId) {
+            if ($("#" + inputId).val() == "" || $("#" + inputId).val() == undefined) {
+                return true;
+            }
+
+            return false;
+        }
+
+        // Watch for a form submission on offer form:
+        $("#offerBtn").click(function (event) {
+            s = "Please correct the highlighted fields";
+            var isButtonSelected = true;
+
+
+
+            if (!$('#perHourButton').hasClass("uk-active") && !$('#perDayButton').hasClass("uk-active")
+                    && !$('#perMonthButton').hasClass("uk-active")) {
+                error = true;
+                isButtonSelected = false;
+
+            }
+
+            //if user chooses to rent per hour
+            if ($('#perHourButton').hasClass("uk-active")) {
+                $(".offerHourField").each(function (i, field) {
+                    if (isEmpty(this.id)) {
+                        $("#" + this.id).addClass("uk-form-danger");
+                        error = true;
+                    } else {
+                        $("#" + this.id).removeClass("uk-form-danger");
+                    }
+                });
+            }
+            else if ($('#perDayButton').hasClass("uk-active")) {  //if user chooses to rent per day
+                $(".offerDayField").each(function (i, field) {
+                    if (isEmpty(this.id)) {
+                        $("#" + this.id).addClass("uk-form-danger");
+                        error = true;
+                    } else {
+                        $("#" + this.id).removeClass("uk-form-danger");
+                    }
+                });
+            }
+            else { //if user chooses to rent per month
+                $(".offerMonthField").each(function (i, field) {
+                    if (isEmpty(this.id)) {
+                        $("#" + this.id).addClass("uk-form-danger");
+                        error = true;
+                    } else {
+                        $("#" + this.id).removeClass("uk-form-danger");
+                    }
+                });
+            }
+
+            $(".offerField").each(function (i, field) {
+                if (isEmpty(this.id)) {
+                    $("#" + this.id).addClass("uk-form-danger");
+                    error = true;
+                } else {
+                    $("#" + this.id).removeClass("uk-form-danger");
+                }
+            });
+            if (isButtonSelected == false) {
+                s = s + " and please select Per Hour, Per Day, or Per Month and fill out its corresponding fields.";
+            }
+
+            if (error) {
+                $('#offerError').html(s);
+            }
+            else {
+
+                // Get the values:
+                var ccNum = $('#cardNumber').val(), cvcNum = $('#CVC').val();
+                var expDate = $('#expDate').val();
+
+                //extract the month and year
+                var expMonth = expDate.substring(0, 2);
+                var expYear = expDate.substring(3, 5);
+
+
+                // Validate the number:
+                if (!Stripe.card.validateCardNumber(ccNum)) {
+                    error = true;
+                    $('#offerError').html("The credit card number appears to be invalid.");
+                    $("#cardNumber").addClass("uk-form-danger");
+                }
+                else {
+                    $("#cardNumber").removeClass("uk-form-danger");
+                }
+                // Validate the CVC:
+                if (!Stripe.card.validateCVC(cvcNum)) {
+                    error = true;
+                    $('#offerError').html('The CVC number appears to be invalid.');
+                    $("#CVC").addClass("uk-form-danger");
+                }
+                else {
+                    $("#CVC").removeClass("uk-form-danger");
+                }
+
+                // Validate the expiration:
+                if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                    error = true;
+                    $('#offerError').html('The expiration date appears to be invalid.');
+                    $("#expDate").addClass("uk-form-danger");
+                }
+                else {
+                    $("#expDate").removeClass("uk-form-danger");
+                }
+
+            }
+
+            var id = "";
+            s = "";
+            var priceLow = false;
+
+            if ($('#perHourButton').hasClass("uk-active")) { //user is choosing to pay by hour
+
+                if (!jQuery('#offerForm input[type=checkbox]:checked').length) { //make sure at least 1 checkbox is checked
+                    $('#offerError').html('Please select the hours that you wish to rent.');
+                    error = true;
+                }
+                else if (!error) { //check the offer price to see if it's too low
+                    //get the number of check boxes checked
+                    var checked = jQuery('#offerForm input[type=checkbox]:checked').length;
+
+                    //var priceLow = false;
+
+
+                    if (checked * $("#perHour").val() * .75 > $("#offerAmount").val()) {
+                        error = true;
+                        UIkit.modal.alert("Sorry, your offer is too low.");
+                        $("#offerError").addClass("uk-hidden");
+                        priceLow = true;
+                    }
+                }
+
+                id = "#datePickerPerHour";
+
+                for (var i = 1; i < 25; i++) {
+                    if ($('[name = ' + i + "]").is(":checked")) {
+                        s = s + hourArrayOpen[i - 1] + " - " + hourArrayClose[i - 1] + ",";
+                    }
+                }
+
+            }
+            else if ($('#perDayButton').hasClass("uk-active") && !error) { // user is choosing per day
+
+                var duration = $('#durationDays').val();
+
+                if ($("#perDay").val() * .75 * duration > $("#offerAmount").val()) {
+                    error = true;
+                    UIkit.modal.alert("Sorry, your offer is too low.");
+                    $("#offerError").addClass("uk-hidden");
+                    priceLow = true;
+                }
+
+                id = "#datePickerPerDay";
+                s = s + " duration of " + duration + " days."
+
+            }
+            else if ($('#perMonthButton').hasClass("uk-active") && !error) { // user is choosing to rent per month
+
+                var duration = $('#durationMonths').val();
+
+                if ($("#perMonth").val() * .75 * duration > $("#offerAmount").val()) {
+                    error = true;
+                    UIkit.modal.alert("Sorry, your offer is too low.");
+                    $("#offerError").addClass("uk-hidden");
+                    priceLow = true;
+                }
+
+                id = "#datePickerPerMonth";
+                s = s + " duration of " + duration + " months."
+            }
+
+
+            // no errors exist
+            if (!error) {
+
+                //Ask if they wish to proceed
+                UIkit.modal.confirm("You have chosen to make an offer of $" + $("#offerAmount").val() + " for " + $(id).val() + ": " +
+                        s + " Paying with credit card **** **** **** " + $("#cardNumber").val().substring(12, 17) + ". Do you wish to proceed?", function () {
+
+
+                    // Get the Stripe token:
+                    Stripe.card.createToken({
+                        number: ccNum,
+                        cvc: cvcNum,
+                        exp_month: expMonth,
+                        exp_year: expYear
+                    }, stripeResponseHandlerOffer);
+                });
+
+            }
+            else if (error) { // errors exist
+
+                $('#offerBtn').attr("disabled", false);
+
+                if (priceLow) {
+                    $("#offerError").addClass("uk-hidden");
+                }
+                else {
+                    $("#offerError").removeClass("uk-hidden");
+                }
+
+                error = false; //set error back to false to check again
+            }
+
+
+        }); // Form submission offer form
+
+        // watch for form submition rent now form
+        $("#rentNowBtn").click(function (event) {
+            s = "Please correct the highlighted fields";
+            var isButtonSelected = true;
+
+            if (!$('#perHourButtonRentNow').hasClass("uk-active") && !$('#perDayButtonRentNow').hasClass("uk-active")
+                    && !$('#perMonthButtonRentNow').hasClass("uk-active")) {
+                error = true;
+                isButtonSelected = false;
+
+            }
+
+            //if user chooses to rent per hour
+            if ($('#perHourButtonRentNow').hasClass("uk-active")) {
+                $(".hourFieldRentNow").each(function (i, field) {
+                    if (isEmpty(this.id)) {
+                        $("#" + this.id).addClass("uk-form-danger");
+                        error = true;
+                    } else {
+                        $("#" + this.id).removeClass("uk-form-danger");
+                    }
+                });
+            }
+            else if ($('#perDayButtonRentNow').hasClass("uk-active")) {  //if user chooses to rent per day
+                $(".dayFieldRentNow").each(function (i, field) {
+                    if (isEmpty(this.id)) {
+                        $("#" + this.id).addClass("uk-form-danger");
+                        error = true;
+                    } else {
+                        $("#" + this.id).removeClass("uk-form-danger");
+                    }
+                });
+            }
+            else { //if user chooses to rent per month
+                $(".monthFieldRentNow").each(function (i, field) {
+                    if (isEmpty(this.id)) {
+                        $("#" + this.id).addClass("uk-form-danger");
+                        error = true;
+                    } else {
+                        $("#" + this.id).removeClass("uk-form-danger");
+                    }
+                });
+            }
+
+            $(".fieldRentNow").each(function (i, field) {
+                if (isEmpty(this.id)) {
+                    $("#" + this.id).addClass("uk-form-danger");
+                    error = true;
+                } else {
+                    $("#" + this.id).removeClass("uk-form-danger");
+                }
+            });
+            if (isButtonSelected == false) {
+                s = s + " and please select Per Hour, Per Day, or Per Month and fill out its corresponding fields.";
+            }
+
+            if (error) {
+                $('#rentNowError').html(s);
+            }
+            else {
+
+                // Get the values:
+                var ccNum = $('#cardNumberRentNow').val(), cvcNum = $('#CVCRentNow').val();
+                var expDate = $('#expDateRentNow').val();
+
+                //extract the month and year
+                var expMonth = expDate.substring(0, 2);
+                var expYear = expDate.substring(3, 5);
+
+
+                // Validate the number:
+                if (!Stripe.card.validateCardNumber(ccNum)) {
+                    error = true;
+                    $('#rentNowError').html("The credit card number appears to be invalid.");
+                    $("#cardNumberRentNow").addClass("uk-form-danger");
+                }
+                else {
+                    $("#cardNumberRentNow").removeClass("uk-form-danger");
+                }
+                // Validate the CVC:
+                if (!Stripe.card.validateCVC(cvcNum)) {
+                    error = true;
+                    $('#rentNowError').html('The CVC number appears to be invalid.');
+                    $("#CVCRentNow").addClass("uk-form-danger");
+                }
+                else {
+                    $("#CVCRenotNow").removeClass("uk-form-danger");
+                }
+
+                // Validate the expiration:
+                if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                    error = true;
+                    $('#rentNowError').html('The expiration date appears to be invalid.');
+                    $("#expDateRentow").addClass("uk-form-danger");
+                }
+                else {
+                    $("#expDateRentNow").removeClass("uk-form-danger");
+                }
+
+            }
+
+            var id = "";
+            s = "";
+
+            if ($('#perHourButtonRentNow').hasClass("uk-active")) { //user is choosing to pay by hour
+
+                if (!jQuery('#rentNowForm input[type=checkbox]:checked').length) { //make sure at least 1 checkbox is checked
+                    $('#rentNowError').html('Please select the hours that you wish to rent.');
+                    error = true;
+                }
+
+                id = "#datePickerPerHourRentNow";
+
+                for (var i = 1; i < 25; i++) {
+                    if ($('[name = checkbox' + i + "]").is(":checked")) {
+                        s = s + hourArrayOpen[i - 1] + " - " + hourArrayClose[i - 1] + ", ";
+                    }
+                }
+
+            }
+            else if ($('#perDayButtonRentNow').hasClass("uk-active") && !error) { // user is choosing per day
+
+                var duration = $('#durationDaysRentNow').val();
+
+                id = "#datePickerPerDayRentNow";
+                s = s + " duration of " + duration + " days."
+
+            }
+            else if ($('#perMonthButtonRentNow').hasClass("uk-active") && !error) { // user is choosing to rent per month
+
+                var duration = $('#durationMonthsRentNow').val();
+
+                id = "#datePickerPerMonthRentNow";
+                s = s + " duration of " + duration + " months."
+            }
+
+
+            // no errors exist
+            if (!error) {
+
+
+                //Ask if they wish to proceed
+                UIkit.modal.confirm("You have chosen to make a payment of $" + $("#price").val() + " for " + $(id).val() + ": " +
+                        s + " Paying with credit card **** **** **** " + $("#cardNumberRentNow").val().substring(12, 17) + ". Do you wish to proceed?", function () {
+                    $
+                    ("#rentNowError").addClass("uk-hidden");
+                    $("#spinnerIcon").removeClass("uk-hidden");
+
+                    // Get the Stripe token:
+                    Stripe.card.createToken({
+                        number: ccNum,
+                        cvc: cvcNum,
+                        exp_month: expMonth,
+                        exp_year: expYear
+                    }, stripeResponseHandlerRentNow);
+                });
+
+            }
+            else if (error) { // errors exist
+
+                $('#rentNowBtn').attr("disabled", false);
+
+
+                $("#rentNowError").removeClass("uk-hidden");
+
+                error = false; //set error back to false to check again
+            }
+
+
+        }); // Form submission rent now
+
+
+        // reset price to 0 if perDayButtonRentNow is clicked
+        $("#perDayButtonRentNow").click(function (event) {
+            var duration = 0;
+
+            // get the price
+            var pricePerDay = $("#perDay").val();
+
+            //if there is a duration, then set the price
+            if ($('#durationDaysRentNow') != "") {
+
+                duration = $('#durationDaysRentNow').val();
+            }
+
+            document.getElementById("price").value = duration * pricePerDay;
+        });
+
+        // reset price to 0 if perHourButtonRentNow is clicked
+        $("#perHourButtonRentNow").click(function (event) {
+
+            var numberChecked = 0;
+
+            // get the price
+            var pricePerHour = $("#perHour").val();
+
+            //if there are boxes checked, then update the price
+            if ($('#checkBoxTableRentNow :checkbox:checked').length) {
+
+                numberChecked = $('#checkBoxTableRentNow :checkbox:checked').length
+            }
+
+            document.getElementById("price").value = numberChecked * pricePerHour;
+
+        });
+        // reset price to 0 if perMonthButtonRentNow is clicked
+        $("#perMonthButtonRentNow").click(function (event) {
+
+            var duration = 0;
+
+            // get the price
+            var pricePerMonth = $("#perMonth").val();
+
+            //if there is a duration, then set the price
+            if ($('#durationMonthsRentNow') != "") {
+
+                duration = $('#durationMonthsRentNow').val();
+            }
+
+            document.getElementById("price").value = duration * pricePerMonth;
+        });
+
+
+
+    });
+
+
+    $("#perHourButton").click(function (e) {
+
+        $("#perHourDiv").removeClass('uk-hidden');
+
+    });
+
+    $("#perHourButtonRentNow").click(function (e) {
+
+        $("#perHourDivRentNow").removeClass('uk-hidden');
+
+    });
+
+    var picker = new Pikaday({
+        field: $('#datePickerPerHour')[0],
+        format: 'MM/DD/YYYY',
+        minDate: moment().toDate(),
+        disableDayFn: function (date) {
+
+            var DD = ('0' + date.getDate()).slice(-2);
+            var MM = ('0' + (date.getMonth() + 1)).slice(-2);
+            var YYYY = date.getFullYear();
+
+            var DDMMYYYY = MM + '/' + DD + '/' + YYYY;
+
+            date = date + "";
+
+            if (unavailableDates.indexOf(DDMMYYYY) != -1) {
+                return true;
+            }
+            else if (temp.indexOf(moment(new Date(date)).format('dddd')) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        },
+        onSelect: function (date) {
+
+            var DD = ('0' + date.getDate()).slice(-2);
+            var MM = ('0' + (date.getMonth() + 1)).slice(-2);
+            var YYYY = date.getFullYear();
+
+            var DDMMYYYY = MM + '/' + DD + '/' + YYYY;
+
+            $("#checkBoxTable").removeClass('uk-hidden');
+
+            //first re-enable all of the checkboxes
+            for (var i = 1; i < 25; i++) {
+                $("#" + i).removeClass('disabledColor');
+                $('[name = ' + i + "]").attr('disabled', false);
+            }
+
+            date = date + "";
+            var day = moment(new Date(date)).format('dddd');
+
+
+            // now disable the ones for the chosen day
+            for (var i = 0; i < unavailableHours[day].length; i++) {
+                $("#" + unavailableHours[day][i]).addClass('disabledColor');
+                $('[name = ' + unavailableHours[day][i] + "]").attr('disabled', true);
+                $('[name = ' + unavailableHours[day][i] + "]").attr('checked', false); // Unchecks it
+            }
+
+            //and the ones that have already been reserved
+            for (var i = 0; i < theUnavailableHours.length; i++) {
+                $("#" + hourMap2[theUnavailableHours[i]] + "]").addClass('disabledColor');
+                $("#" + hourMap2[theUnavailableHours[i]] + "]").attr('disabled', true);
+                $("#" + hourMap2[theUnavailableHours[i]] + "]").attr('checked', false); // Unchecks it
+            }
+
+            if (theUnavailableHours[DDMMYYYY]) { //if this date has hours that are reserved
+
+                var hours = theUnavailableHours[DDMMYYYY];
+
+
+                //disable the ones that have already been reserved
+                for (var i = 0; i < hours.length; i++) {
+                    $("#" + hourMap2[hours[i]]).addClass('disabledColor');
+                    $('[name =' + hourMap2[hours[i]] + "]").attr('disabled', true);
+                    $('[name =' + hourMap2[hours[i]] + "]").attr('checked', false); // Unchecks it
+                }
+            }
+
+        }
+    });
+
+    var picker = new Pikaday({
+        field: $('#datePickerPerHourRentNow')[0],
+        format: 'MM/DD/YYYY',
+        minDate: moment().toDate(),
+        disableDayFn: function (date) {
+
+            var DD = ('0' + date.getDate()).slice(-2);
+            var MM = ('0' + (date.getMonth() + 1)).slice(-2);
+            var YYYY = date.getFullYear();
+
+            var DDMMYYYY = MM + '/' + DD + '/' + YYYY;
+
+            date = date + "";
+
+            if (unavailableDates.indexOf(DDMMYYYY) != -1) {
+                return true;
+            }
+            else if (temp.indexOf(moment(new Date(date)).format('dddd')) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        },
+        onSelect: function (date) {
+
+            var DD = ('0' + date.getDate()).slice(-2);
+            var MM = ('0' + (date.getMonth() + 1)).slice(-2);
+            var YYYY = date.getFullYear();
+
+            var DDMMYYYY = MM + '/' + DD + '/' + YYYY;
+
+            $("#checkBoxTableRentNow").removeClass('uk-hidden');
+
+            //first re-enable all of the checkboxes
+            for (var i = 1; i < 25; i++) {
+                $("#checkbox" + i).removeClass('disabledColor');
+                $('[name = checkbox' + i + "]").attr('disabled', false);
+            }
+
+            date = date + "";
+            var day = moment(new Date(date)).format('dddd');
+
+
+            // now disable the ones for the chosen day
+            for (var i = 0; i < unavailableHours[day].length; i++) {
+                $("#checkbox" + unavailableHours[day][i]).addClass('disabledColor');
+                $('[name = checkbox' + unavailableHours[day][i] + "]").attr('disabled', true);
+                $('[name = checkbox' + unavailableHours[day][i] + "]").attr('checked', false); // Unchecks it
+            }
+
+
+            if (theUnavailableHours[DDMMYYYY]) { //if this date has hours that are reserved
+
+                var hours = theUnavailableHours[DDMMYYYY];
+
+
+                //disable the ones that have already been reserved
+                for (var i = 0; i < hours.length; i++) {
+                    $("#checkbox" + hourMap2[hours[i]]).addClass('disabledColor');
+                    $('[name = checkbox' + hourMap2[hours[i]] + "]").attr('disabled', true);
+                    $('[name = checkbox' + hourMap2[hours[i]] + "]").attr('checked', false); // Unchecks it
+                }
+            }
+
+        }
+    });
+
+
+    $('.datePickerPerDayAndMonth').each(function () {
+        var picker = new Pikaday({
+            field: this,
+            format: 'MM/DD/YYYY',
+            minDate: moment().toDate(),
+            disableDayFn: function (date) {
+
+                var DD = ('0' + date.getDate()).slice(-2);
+                var MM = ('0' + (date.getMonth() + 1)).slice(-2);
+                var YYYY = date.getFullYear();
+
+                var DDMMYYYY = MM + '/' + DD + '/' + YYYY;
+                date = date + "";
+
+                if (unavailableDates.indexOf(DDMMYYYY) != -1) {
+                    return true;
+                }
+                else if (temp.indexOf(moment(new Date(date)).format('dddd')) != -1) {
+                    return true;
+                }
+                else if (theUnavailableHours[DDMMYYYY]) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+            }
+        });
+    });
+
+    // get the price
+    var perHourPrice = $("#perHour").val();
+
+    //change price depending on amount of checks
+    if ($('#perHourButtonRentNow').hasClass("uk-active")) {
+        $('#checkBoxTableRentNow :checkbox').change(function () {
+            var numberChecked
+
+            if ($('#checkBoxTableRentNow :checkbox:checked').length) {
+
+                numberChecked = $('#checkBoxTableRentNow :checkbox:checked').length
+            }
+            else {
+                numberChecked = 0;
+            }
+
+            document.getElementById("price").value = perHourPrice * numberChecked;
+
+        });
+    }
+    function updateDayTimeFrame(duration, calendar, textArea, textAreaSorry) {
+
+        //get duration
+        var dur = $("#" + duration).val();
+
+        if (dur == "") {
+            dur = 1;
+        }
+
+
+        //get selected date
+        var startDate = $("#" + calendar).val();
+
+
+        var new_date = moment(new Date(startDate)).add(dur - 1, 'days');
+
+        var endDate = moment(new Date(new_date)).format("MM/DD/YYYY")
+
+
+        $("#" + textArea).removeClass("uk-hidden");
+        $("#" + textArea).html("Time frame: " + startDate + " - " + endDate);
+
+        var s = "Sorry, ";
+        var datesFound = false;
+
+        while (dur > 0) {
+
+            startDate = moment(new Date(startDate)).add(1, 'days');
+
+            endDate = moment(new Date(startDate)).format("MM/DD/YYYY")
+
+
+            if (unavailableDates.indexOf(endDate) != -1 || theUnavailableHours[endDate]) {
+                s = s + endDate + ", ";
+                datesFound = true;
+
+            }
+
+            dur--;
+
+        }
+
+        if (datesFound) {
+            $("#" + textAreaSorry).removeClass("uk-hidden");
+            $("#" + textAreaSorry).html(s + " unavailable in your time frame.");
+            $("#" + duration).addClass("uk-form-danger");
+            error = true;
+        }
+        else {
+            $("#" + textAreaSorry).addClass("uk-hidden");
+            $("#" + duration).removeClass("uk-form-danger");
+            error = false;
+        }
+
+
+        if (duration == "durationDaysRentNow") { //calculate and set the price
+
+            document.getElementById("price").value = $("#perDay").val() * $("#" + duration).val();
+
+        }
+
+    }
+
+    function updateMonthTimeFrame(duration, calendar, textArea) {
+
+        //get duration
+        var dur = $("#" + duration).val();
+
+        //get selected date
+        var startDate = $("#" + calendar).val();
+
+
+        var date = moment(new Date(startDate)).format('DD.MM.YYYY');
+
+        var new_date = moment(date, "DD-MM-YYYY").add(dur, 'months');
+
+
+        var day = new_date.format('DD');
+        var month = new_date.format('MM');
+        var year = new_date.format('YYYY');
+
+        var endDate = month + "/" + day + "/" + year;
+
+
+        $('#' + textArea).removeClass("uk-hidden");
+        $('#' + textArea).html("Time frame: " + startDate + " - " + endDate);
+
+        if (duration == "durationMonthsRentNow") {
+            document.getElementById("price").value = $("#perMonth").val() * $("#" + duration).val();
+        }
+    }
+
+
+</script>

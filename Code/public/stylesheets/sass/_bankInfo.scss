@@ -1,0 +1,35 @@
+@import "colorstack";
+@import "fontstack";
+
+$primary-color: #4ECDC4;
+$dark-background: #556270;
+$light-background: #dde2e3;
+
+#bankInfoWrapper {
+  height: 120vh;
+}
+
+#bankInfoContainer {
+  h1 {
+    padding-top: 50px !important;
+    font-family: $cursive !important;
+    color: $primary-color;
+    font-size: 4em;
+  }
+
+  p {
+    font-family: "Open Sans";
+    color: white;
+    font-weight: 300;
+  }
+
+  h6 {
+    margin-top: 0 !important;
+  }
+}
+
+#bankInfoDiv {
+  width: 390px !important;
+  align-content: center !important;
+  margin-top: 40px;
+}

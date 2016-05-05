@@ -1,0 +1,127 @@
+@import "fontstack";
+@import "panel_header";
+@import "colorstack";
+
+
+
+//Utility classes
+.boxShadowWrapper{
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 0 20px #999;
+}
+
+
+//Add Space View
+#topLevelContainer{
+  font-family: $font-stack;
+  position:relative;
+  width: 100%;
+  height: 100vh;
+  padding: 0 !important;
+}
+#newListingImageContainer{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0 !important;
+  top:0;
+  bottom: 50%;
+
+  .uk-button-group{
+    .left{
+      border-bottom-left-radius: 0;
+    }
+    .right{
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+    height: 40px;
+    position: relative;
+    top: -40px;
+    display: inline-block;
+    padding-bottom: 0 !important;
+  }
+  #newListingDoneButton{
+    position: relative;
+    top: -40px;
+    left: -4px;
+    display: inline-block;
+    padding-bottom: 0 !important;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+  button{
+    height: 41px;
+  }
+  img{
+    width: 100%;
+    max-width: 100%;
+    height: 50vh;
+  }
+}
+#newListingBottomGrid{
+  position: absolute;
+  top:50%;
+  //bottom: 0;
+  width: 100% !important;
+  //height: 100%;
+  //height: 50vh;
+}
+#newListingLeftContainer{
+  background-color: $dark-background;
+  padding: 12% 5% 5% 5%;
+  h1{
+    color: $primary-color;
+    font-family: $cursive;
+    font-size: 5em;
+    text-align: center;
+  }
+  p{
+    color: white;
+    font-size: 1.5em;
+  }
+}
+#newListingRightContainer{
+  background-color: white;
+  //padding-top: 50px;
+  overflow: scroll;
+  padding: 30px;
+
+  #featuresTable{
+    button{
+      text-align: center;
+      width: 60px;
+    }
+  }
+
+  #locationLi{
+    padding: 5%;
+  }
+}
+
+
+
+
+//Location
+#newListingMapContainer{
+  //background-color: $dark-background;
+  //background-color: $light-background;
+  height: 500px;
+  @extend .boxShadowWrapper;
+}
+#newListingSearchContainer{
+  //background-color: $light-background;
+  //background-color: $dark-background;
+  @extend .boxShadowWrapper;
+}
+
+
+//Photos
+#newListingPhotosUploadContainer{
+  @extend .boxShadowWrapper;
+}
+#newListingPhotosPreviewContainer{
+  @extend .boxShadowWrapper;
+}

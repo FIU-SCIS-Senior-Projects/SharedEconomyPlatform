@@ -1,0 +1,225 @@
+<div class="uk-grid">
+    <div class="uk-width-1-1 uk-width-medium-1-2">
+        <form class="uk-form uk-form-stacked" id="newListingDetailsForm1">
+            <legend>Venue Details</legend>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="spaceNameInput">Space Name</label>
+                <div class="uk-form-controls">
+                    <input type="text" id="spaceNameInput" name="spaceName" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="phoneNumberInput">Phone Number</label>
+                <div class="uk-form-controls">
+                    <input type="text" id="phoneNumberInput" name="phoneNumber" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="emailInput">E-Mail</label>
+                <div class="uk-form-controls">
+                    <input type="email" id="emailInput" name="email" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="websiteInput">Website</label>
+                <div class="uk-form-controls">
+                    <input type="url" id="websiteInput" name="website" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="spaceTypeDropdown">Space Type</label>
+                <div class="uk-form-controls">
+                    <select id="spaceTypeDropdown" name="spaceType">
+                        <option>Private Office</option>
+                        <option>Shared Office</option>
+                        <option>Personal Working Desk</option>
+                        <option>Office Building</option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="floorsInput">Floors (if applicable)</label>
+                <div class="uk-form-controls">
+                    <input type="number" id="floorsInput" name="floors" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="spaceAreaInput">Sq. Feet (if applicable)</label>
+                <div class="uk-form-controls">
+                    <input type="number" id="spaceAreaInput" name="spaceArea" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="numberRoomsInput">Number of Rooms (if applicable)</label>
+                <div class="uk-form-controls">
+                    <input type="number" id="numberRoomsInput" name="roomCount" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="numberDesksInput">Number of Desks (if applicable)</label>
+                <div class="uk-form-controls">
+                    <input type="number" id="numberDesksInput" name="numberDesks" placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="spaceDescriptionInput">Space Description</label>
+                <div class="uk-form-controls">
+                    <textarea id="spaceDescriptionInput" name="spaceDescription" cols="50" rows="5"
+                              placeholder=""></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="uk-width-1-1 uk-width-medium-1-2">
+        <form class="uk-form uk-form-stacked" id="newListingDetailsForm2">
+            <legend>Hours of operation</legend>
+
+            <table class="uk-table">
+                <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--Monday-->
+                <tr>
+                    <td>Monday</td>
+                    <td><input type="text" class="uk-form-small" id="mondayOpenInput" name="mondayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="mondayCloseInput" name="mondayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                <!--Tuesday-->
+                <tr>
+                    <td>Tuesday</td>
+                    <td><input type="text" class="uk-form-small" id="tuesdayOpenInput" name="tuesdayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="tuesdayCloseInput" name="tuesdayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                <!--Wednesday-->
+                <tr>
+                    <td>Wednesday</td>
+                    <td><input type="text" class="uk-form-small" id="wednesdayOpenInput" name="wednesdayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="wednesdayCloseInput" name="wednesdayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                <!--Thursday-->
+                <tr>
+                    <td>Thursday</td>
+                    <td><input type="text" class="uk-form-small" id="thursdayOpenInput" name="thursdayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="thursdayCloseInput" name="thursdayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                <!--Friday-->
+                <tr>
+                    <td>Friday</td>
+                    <td><input type="text" class="uk-form-small" id="fridayOpenInput" name="fridayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="fridayCloseInput" name="fridayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                <!--Saturday-->
+                <tr>
+                    <td>Saturday</td>
+                    <td><input type="text" class="uk-form-small" id="saturdayOpenInput" name="saturdayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="saturdayCloseInput" name="saturdayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                <!--Sunday-->
+                <tr>
+                    <td>Sunday</td>
+                    <td><input type="text" class="uk-form-small" id="sundayOpenInput" name="sundayOpen"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                    <td><input type="text" class="uk-form-small" id="sundayCloseInput" name="sundayClose"
+                               data-uk-timepicker="{format:'12h'}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <legend>Features</legend>
+
+            <table id="featuresTable" name="featuresCheckbox" data-uk-button-checkbox>
+                <tbody>
+                <tr>
+                    <td>
+                        <button type="button" name="featureWifi" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-wifi featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="WiFi"></button>
+                    </td>
+                    <td>
+                        <button type="button" name="featureFoodCourt" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-cutlery uk-icon-small featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Foodcourt/Cafe"></button>
+                    </td>
+                    <td>
+                        <button type="button" name="featureWheelChair" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-wheelchair featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Wheelchair Accessible"></button>
+                    </td>
+                    <td>
+                        <button type="button" name="featureMeetingRoom" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-group featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Meeting Room Available"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" name="featureKitchen" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-spoon featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Kitchen"></button>
+                    </td>
+                    <td>
+                        <button type="button" name="featureMail" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-envelope featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Mail Service"></button>
+                    </td>
+                    <td>
+                        <button type="button" name="featureCoffee" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-coffee featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Coffee Machine"></button>
+                    </td>
+                    <td>
+                        <button type="button" name="featureParking" value=1
+                                class="uk-button uk-button-primary uk-icon-small uk-icon-car featureCheckBox"
+                                data-uk-tooltip="{pos:'top'}" title="Parking Available"></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <legend>Price</legend>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="startingBidInput">Per Hour</label>
+                <div class="uk-form-controls uk-form-icon">
+                    <i class="uk-icon-dollar"></i>
+                    <input class="uk-form-width-small" type="number" id="perHourInput" name="perHour"
+                           placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="startingBidInput">Per Day</label>
+                <div class="uk-form-controls uk-form-icon">
+                    <i class="uk-icon-dollar"></i>
+                    <input class="uk-form-width-small" type="number" id="perDayInput" name="perDay"
+                           placeholder="">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="rentNowInput">Per Month</label>
+                <div class="uk-form-controls uk-form-icon">
+                    <i class="uk-icon-dollar"></i>
+                    <input class="uk-form-width-small" type="number" id="perMonthInput" name="perMonth" placeholder="">
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

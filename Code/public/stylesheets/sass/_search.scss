@@ -1,0 +1,66 @@
+@import "colorstack";
+@import "fontstack";
+
+#searchPageContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  //bottom: 0;
+  left: 0;
+  height: 5000px;
+  background: $dark-background;
+
+  .uk-container {
+    margin-top: 150px;
+  }
+
+  #searchHeader {
+    article {
+      h1 {
+        font-family: $cursive;
+        color: $primary-color;
+        font-size: 4em;
+      }
+      p {
+        font-family: $font-stack;
+        color: white;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .uk-navbar {
+    //background-color: #ff6b6b;
+    //background-color: $light-background;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    #filtersLabel {
+      font-family: $cursive;
+      font-size: 3em;
+      text-shadow: none !important;
+    }
+
+    #featureSelect {
+      .uk-active {
+        background-color: $primary-color;
+      }
+    }
+
+  }
+}
+
+#resultsContainer {
+  padding: 20px;
+  background-color: $light-background;
+}
+
+.resultItem {
+  box-shadow: 0 0 20px #999 !important;
+  //border: 1px solid $primary-color !important;
+  border-style: none;
+  background-color: $dark-background;
+}
