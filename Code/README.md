@@ -1,6 +1,6 @@
 
-.#HyperDesk 1.0 Directory Structure:
-__________________________________
+.# HyperDesk 1.0 Directory Structure:
+
 
 * **config.js**: Contains our configurations for the website and the database as well as for the email we are using.
 
